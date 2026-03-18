@@ -1,0 +1,38 @@
+---
+interface Props {
+  words: string[];
+  listName: string;
+}
+
+const { words, listName } = Astro.props;
+
+// Split words into rows of 3 for the table
+const rows: string[][] = [];
+for (let i = 0; i < words.length; i += 3) {
+  rows.push(words.slice(i, i + 3));
+}
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full border-collapse text-left" aria-label={`${listName} word list`}>
+    <thead>
+      <tr class="bg-blue-50">
+        <th class="px-4 py-2 text-sm font-semibold text-blue-800 border border-blue-100 w-1/3">Word</th>
+        <th class="px-4 py-2 text-sm font-semibold text-blue-800 border border-blue-100 w-1/3">Word</th>
+        <th class="px-4 py-2 text-sm font-semibold text-blue-800 border border-blue-100 w-1/3">Word</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row, i) => (
+        <tr class={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+          {row.map((word) => (
+            <td class="px-4 py-3 text-lg font-medium text-gray-800 border border-gray-100">{word}</td>
+          ))}
+          {row.length < 3 && Array.from({ length: 3 - row.length }).map(() => (
+            <td class="px-4 py-3 border border-gray-100"></td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

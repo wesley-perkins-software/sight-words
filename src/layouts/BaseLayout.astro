@@ -26,6 +26,21 @@ const navLinks = [
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
 
+    <style>
+@media print {
+  header, footer, .ad-slot, .flashcard-tool, .no-print {
+    display: none;
+  }
+  .word-list {
+    column-count: 3;
+    font-size: 24pt;
+  }
+  body {
+    font-size: 12pt;
+  }
+}
+</style>
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
