@@ -52,3 +52,8 @@ Never add internal links manually in page files.
 - FAQ sections use FAQ schema markup as JSON-LD
 - Print CSS on every list page
 - Canonical tags on every page
+
+## Branch rules
+Always open pull requests against the development branch, not main.
+Never commit directly to main or development.
+Always create a new feature branch for each task.
