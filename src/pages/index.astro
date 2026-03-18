@@ -1,3 +1,151 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Flashcard from "../components/Flashcard.jsx";
+import FAQ from "../components/FAQ.astro";
+import RelatedPages from "../components/RelatedPages.astro";
+import allWords from "../data/words.json";
+
+const dolchPrePrimer = allWords.find((list) => list.slug === "dolch-pre-primer");
+const dolchPrimer = allWords.find((list) => list.slug === "dolch-primer");
+const fry1100 = allWords.find((list) => list.slug === "fry-1-100");
+
+const faqs = [
+  {
+    question: "What are sight words?",
+    answer:
+      "Sight words are common words that children are taught to recognize instantly, without needing to sound them out. They appear so frequently in text that being able to read them automatically helps children read faster and more fluently.",
+  },
+  {
+    question: "What is the difference between Dolch and Fry sight words?",
+    answer:
+      "Dolch words are a list of 220 common words compiled by Edward Dolch in 1948, organized by grade level from pre-primer through 3rd grade. Fry words are a more modern list of 1000 words compiled by Edward Fry, ranked by frequency of use in reading materials.",
+  },
+  {
+    question: "How many sight words should my kindergartner know?",
+    answer:
+      "Most kindergartners are expected to know between 20 and 50 sight words by the end of the school year. The Dolch pre-primer and primer lists are the standard starting point.",
+  },
+  {
+    question: "How do I use these flashcards?",
+    answer:
+      "Tap the speaker icon to hear the word spoken aloud. Use the Next and Previous buttons to move through the list. Tap Shuffle to practice in a random order. You can hold your phone up to your child so they can see the word clearly on the screen.",
+  },
+];
 ---
-<h1>Sight Words — Coming Soon</h1>
+
+<BaseLayout
+  title="Sight Words — Free Flashcards, Lists & Printables"
+  description="Free sight words flashcards, lists, and printables for kindergarten through 2nd grade. Includes Dolch and Fry word lists with audio."
+  canonicalUrl="https://placeholder.com"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Free flashcards, word lists, and printables for every grade level. Practice
+    Dolch and Fry sight words with audio — no sign-up required. Works great on
+    your phone.
+  </p>
+
+  <Flashcard
+    client:load
+    words={dolchPrePrimer.words}
+    listName={dolchPrePrimer.name}
+  />
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Browse by Grade Level</h2>
+    <ul class="flex flex-wrap gap-3">
+      <li>
+        <a
+          href="/kindergarten-sight-words"
+          class="inline-block px-4 py-2 rounded-lg bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 transition-colors text-sm"
+        >
+          Kindergarten Sight Words
+        </a>
+      </li>
+      <li>
+        <a
+          href="/1st-grade-sight-words"
+          class="inline-block px-4 py-2 rounded-lg bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 transition-colors text-sm"
+        >
+          1st Grade Sight Words
+        </a>
+      </li>
+      <li>
+        <a
+          href="/2nd-grade-sight-words"
+          class="inline-block px-4 py-2 rounded-lg bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 transition-colors text-sm"
+        >
+          2nd Grade Sight Words
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Dolch Sight Words</h2>
+    <ul class="flex flex-wrap gap-3">
+      <li>
+        <a
+          href="/dolch-pre-primer"
+          class="inline-block px-4 py-2 rounded-lg bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 transition-colors text-sm"
+        >
+          Dolch Pre-Primer ({dolchPrePrimer.wordCount} words)
+        </a>
+      </li>
+      <li>
+        <a
+          href="/dolch-primer"
+          class="inline-block px-4 py-2 rounded-lg bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 transition-colors text-sm"
+        >
+          Dolch Primer ({dolchPrimer.wordCount} words)
+        </a>
+      </li>
+      <li>
+        <a
+          href="/dolch-sight-words"
+          class="inline-block px-4 py-2 rounded-lg bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 transition-colors text-sm"
+        >
+          All Dolch Sight Words
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Fry Sight Words</h2>
+    <ul class="flex flex-wrap gap-3">
+      <li>
+        <a
+          href="/fry-1-100"
+          class="inline-block px-4 py-2 rounded-lg bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 transition-colors text-sm"
+        >
+          Fry Words 1–100 ({fry1100.wordCount} words)
+        </a>
+      </li>
+      <li>
+        <a
+          href="/fry-sight-words"
+          class="inline-block px-4 py-2 rounded-lg bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 transition-colors text-sm"
+        >
+          All Fry Sight Words
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-3">
+      How to use these flashcards
+    </h2>
+    <p class="text-gray-600 leading-relaxed">
+      Tap the speaker icon to hear the word, then use Next and Previous to move
+      through the list. Hit Shuffle any time to mix things up. Five minutes a
+      day is enough — consistency matters more than long sessions.
+    </p>
+  </section>
+
+  <FAQ faqs={faqs} />
+
+  <RelatedPages currentSlug="home" />
+</BaseLayout>

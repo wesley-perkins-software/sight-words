@@ -11,5 +11,39 @@
       "look", "make", "me", "my", "not", "one", "play", "red", "run", "said",
       "see", "the", "three", "to", "two", "up", "we", "where", "yellow", "you"
     ]
+  },
+  {
+    "name": "Dolch Primer",
+    "grade": "Kindergarten",
+    "slug": "dolch-primer",
+    "wordCount": 52,
+    "description": "The Dolch Primer list contains 52 sight words for kindergarten readers.",
+    "words": [
+      "all", "am", "are", "at", "ate", "be", "black", "brown", "but", "came",
+      "did", "do", "eat", "four", "get", "good", "have", "he", "into", "like",
+      "must", "new", "no", "now", "on", "our", "out", "please", "pretty", "ran",
+      "ride", "saw", "say", "she", "so", "soon", "that", "there", "they", "this",
+      "too", "under", "want", "was", "well", "went", "what", "white", "who", "will",
+      "with", "yes"
+    ]
+  },
+  {
+    "name": "Fry 1-100",
+    "grade": "1st Grade",
+    "slug": "fry-1-100",
+    "wordCount": 100,
+    "description": "The first 100 Fry sight words, ranked by frequency of use in reading materials.",
+    "words": [
+      "the", "of", "and", "a", "to", "in", "is", "you", "that", "it",
+      "he", "was", "for", "on", "are", "as", "with", "his", "they", "I",
+      "at", "be", "this", "have", "from", "or", "one", "had", "by", "word",
+      "but", "not", "what", "all", "were", "we", "when", "your", "can", "said",
+      "there", "use", "an", "each", "which", "she", "do", "how", "their", "if",
+      "will", "up", "other", "about", "out", "many", "then", "them", "these", "so",
+      "some", "her", "would", "make", "like", "him", "into", "time", "has", "look",
+      "two", "more", "write", "go", "see", "number", "no", "way", "could", "people",
+      "my", "than", "first", "water", "been", "call", "who", "oil", "its", "now",
+      "find", "long", "down", "day", "did", "get", "come", "made", "may", "part"
+    ]
   }
 ]
