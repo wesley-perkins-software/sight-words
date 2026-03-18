@@ -70,3 +70,8 @@ and a React island for the interactive flashcard tool. Hosted on Netlify.
 - Full-screen mode
 - Flagged / starred words system
 - Games or quiz modes
+
+## Branch rules
+Always open pull requests against the development branch, not main.
+Never commit directly to main or development.
+Always create a new feature branch for each task.
