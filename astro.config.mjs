@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://YOURDOMAINHERE.com',
+  site: 'https://placeholder.com',
   integrations: [tailwind(), react(), sitemap()],
 });
