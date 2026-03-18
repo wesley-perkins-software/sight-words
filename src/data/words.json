@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Dolch Pre-Primer",
+    "grade": "Pre-K",
+    "slug": "dolch-pre-primer",
+    "wordCount": 40,
+    "description": "The Dolch Pre-Primer list contains 40 of the most common sight words for pre-kindergarten readers.",
+    "words": [
+      "a", "and", "away", "big", "blue", "can", "come", "down", "find", "for",
+      "funny", "go", "help", "here", "I", "in", "is", "it", "jump", "little",
+      "look", "make", "me", "my", "not", "one", "play", "red", "run", "said",
+      "see", "the", "three", "to", "two", "up", "we", "where", "yellow", "you"
+    ]
+  }
+]
