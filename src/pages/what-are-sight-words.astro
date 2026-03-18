@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FAQ from "../components/FAQ.astro";
+import RelatedPages from "../components/RelatedPages.astro";
+
+const faqs = [
+  {
+    question: "Are sight words the same as high frequency words?",
+    answer:
+      "They are often used interchangeably, but there is a subtle difference. High frequency words are simply words that appear most often in written text. Sight words are words that children are taught to recognize on sight — many of which are high frequency words, but not all sight words are high frequency words.",
+  },
+  {
+    question: "When should children start learning sight words?",
+    answer:
+      "Most children begin learning sight words in pre-kindergarten or kindergarten, typically around age 4 or 5. Starting with a small set of 10 to 20 words and building gradually is more effective than trying to learn a large list all at once.",
+  },
+  {
+    question: "How long does it take to learn sight words?",
+    answer:
+      "With regular practice of 5 to 10 minutes per day, most children can learn 20 new sight words per month. Consistency matters more than the length of each session.",
+  },
+  {
+    question: "What is the best way to practice sight words at home?",
+    answer:
+      "Flashcards are one of the most effective tools because they build instant recognition through repetition. Mix up the order frequently so children learn the words rather than memorizing a sequence. Reading books that use high frequency words reinforces recognition in context.",
+  },
+];
+---
+
+<BaseLayout
+  title="What Are Sight Words? A Guide for Parents"
+  description="Learn what sight words are, why they matter, and how to help your child learn them at home with free flashcards and printable lists."
+  canonicalUrl="https://placeholder.com/what-are-sight-words"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">What Are Sight Words?</h1>
+
+  <div class="prose prose-gray max-w-none space-y-5 text-gray-600 leading-relaxed">
+    <p>
+      Sight words are common words that children learn to recognize
+      automatically — at a glance, without sounding them out letter by letter.
+      Words like <em>the</em>, <em>said</em>, <em>was</em>, and <em>they</em>
+      show up so often in books that struggling to decode them slows a child
+      down on every page. When those words become instant, reading gets easier
+      and more enjoyable.
+    </p>
+
+    <p>
+      The ability to read sight words fluently frees up a child's mental energy
+      for the harder work of understanding a story and figuring out unfamiliar
+      words. Research consistently shows that automatic word recognition is one
+      of the strongest predictors of overall reading ability. In other words,
+      time spent on sight words pays off far beyond the list itself.
+    </p>
+
+    <p>
+      Sight words are different from phonics. Phonics teaches children rules for
+      sounding out words — blending letters and patterns together. Many sight
+      words don't follow those rules neatly. <em>Said</em> doesn't sound the way
+      it looks. <em>The</em> can't be decoded without already knowing it. That's
+      why they're taught separately, through recognition and repetition rather
+      than decoding strategies.
+    </p>
+
+    <p>
+      The two most widely used sight word lists are the <strong>Dolch list</strong>
+      and the <strong>Fry list</strong>. The Dolch list, compiled in 1948 by
+      Edward Dolch, contains 220 words organized by grade level from pre-primer
+      through 3rd grade. The Fry list, developed by Edward Fry, ranks 1,000
+      words by how frequently they appear in reading materials. Both lists
+      overlap significantly, and both are used in schools across the country.
+    </p>
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-5">
+      How to teach sight words at home
+    </h2>
+    <div class="space-y-5 text-gray-600 leading-relaxed">
+      <p>
+        Start small. Pick 5 to 10 words at a time and practice them until your
+        child knows them cold before adding more. Trying to tackle a full list
+        of 40 words at once leads to frustration. Small wins build confidence
+        and make the next batch easier.
+      </p>
+
+      <p>
+        Use flashcards daily, but keep sessions short. Five to ten minutes is
+        enough. The key is showing up every day rather than doing one long
+        session on the weekend. Quick, repeated exposure is what turns a
+        unfamiliar word into an automatic one.
+      </p>
+
+      <p>
+        Mix up the order regularly. When words are always practiced in the same
+        sequence, children can start anticipating the next word instead of
+        actually reading it. Shuffling keeps them honest and builds real
+        recognition.
+      </p>
+
+      <p>
+        Reinforce sight words in books. When your child encounters a word from
+        their list while reading aloud, point it out. Recognizing a word in
+        real text — not just on a flashcard — is what makes the learning stick.
+        Any early reader from the library will be full of the words they're
+        practicing.
+      </p>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} />
+
+  <section class="mt-10 pt-8 border-t border-gray-200">
+    <p class="text-gray-700">
+      Ready to start practicing?{" "}
+      <a
+        href="/"
+        class="text-blue-700 font-semibold hover:underline"
+      >
+        Practice sight words now with our free flashcards
+      </a>{" "}
+      — no sign-up, no app download, works on any phone.
+    </p>
+  </section>
+
+  <RelatedPages currentSlug="what-are-sight-words" />
+</BaseLayout>
