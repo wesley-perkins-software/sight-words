@@ -36,7 +36,7 @@ const faqs = [
 >
   <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch 1st Grade Sight Words</h1>
 
-  <p class="text-gray-600 leading-relaxed mb-6">
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
     The Dolch 1st grade list contains 41 words for children in their first year of formal school, typically ages 6 to 7. These words are a step up from the primer list — slightly more complex and abstract — but mastering them puts a child well on their way to fluent independent reading.
   </p>
 
@@ -51,7 +51,7 @@ const faqs = [
     </a>
   </div>
 
-  <div id="flashcard-tool">
+  <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}

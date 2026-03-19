@@ -36,7 +36,7 @@ const faqs = [
 >
   <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch 2nd Grade Sight Words</h1>
 
-  <p class="text-gray-600 leading-relaxed mb-6">
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
     The Dolch 2nd grade list contains 46 words designed for children in their second year of school, typically ages 7 to 8. The words at this level are longer and more abstract than earlier lists, with multi-syllable words that children need to recognize automatically to keep their reading fluent.
   </p>
 
@@ -51,7 +51,7 @@ const faqs = [
     </a>
   </div>
 
-  <div id="flashcard-tool">
+  <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
