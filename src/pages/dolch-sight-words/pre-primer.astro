@@ -33,6 +33,7 @@ const faqs = [
   title="Dolch Pre-Primer Sight Words List | Free Flashcards"
   description="Free Dolch pre-primer sight words list with interactive flashcards and audio. 40 essential words for pre-K readers."
   canonicalUrl="https://placeholder.com/dolch-sight-words/pre-primer"
+  mainClass="print-word-list-only"
 >
   <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch Pre-Primer Sight Words</h1>
 
@@ -59,7 +60,7 @@ const faqs = [
     />
   </div>
 
-  <section class="mt-10">
+  <section class="mt-10 print-word-list">
     <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3 no-print">All {list.wordCount} Pre-Primer Words</h2>
     <WordTable words={list.words} listName={list.name} />
   </section>

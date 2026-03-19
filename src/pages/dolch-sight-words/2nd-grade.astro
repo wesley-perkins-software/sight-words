@@ -33,6 +33,7 @@ const faqs = [
   title="Dolch 2nd Grade Sight Words List | Free Flashcards"
   description="Free Dolch 2nd grade sight words list with interactive flashcards and audio. 46 words for second grade readers."
   canonicalUrl="https://placeholder.com/dolch-sight-words/2nd-grade"
+  mainClass="print-word-list-only"
 >
   <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch 2nd Grade Sight Words</h1>
 
@@ -59,7 +60,7 @@ const faqs = [
     />
   </div>
 
-  <section class="mt-10">
+  <section class="mt-10 print-word-list">
     <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3 no-print">All {list.wordCount} 2nd Grade Words</h2>
     <WordTable words={list.words} listName={list.name} />
   </section>

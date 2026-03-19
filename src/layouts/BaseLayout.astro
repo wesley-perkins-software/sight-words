@@ -3,9 +3,10 @@ interface Props {
   title: string;
   description: string;
   canonicalUrl: string;
+  mainClass?: string;
 }
 
-const { title, description, canonicalUrl } = Astro.props;
+const { title, description, canonicalUrl, mainClass = "" } = Astro.props;
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
@@ -52,6 +53,15 @@ const navLinks = [
     font-size: 18pt;
     padding: 6pt;
   }
+
+  main.print-word-list-only > * {
+    display: none !important;
+  }
+
+  main.print-word-list-only > h1,
+  main.print-word-list-only > .print-word-list {
+    display: block !important;
+  }
 }
 </style>
 
@@ -89,7 +99,7 @@ const navLinks = [
       </nav>
     </header>
 
-    <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-6">
+    <main class={`flex-1 max-w-5xl w-full mx-auto px-4 py-6 ${mainClass}`.trim()}>
       <slot />
     </main>
 
