@@ -2,13 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Flashcard from "../components/Flashcard.jsx";
 import FAQ from "../components/FAQ.astro";
-import allWords from "../data/words.json";
+import wordsData from "../data/words.json";
 
-const dolchPrePrimer = allWords.find((list) => list.slug === "dolch-pre-primer");
-const dolchPrimer = allWords.find((list) => list.slug === "dolch-primer");
-const fry1100 = allWords.find((list) => list.slug === "fry-1-100");
+const dolchPrePrimer = wordsData.lists["dolch-pre-primer"];
+const dolchPrimer = wordsData.lists["dolch-primer"];
+const fry1100 = wordsData.lists["fry-1-100"];
 
-const relatedLists = allWords.filter((list) => list.slug !== "home");
+const relatedLists = Object.values(wordsData.lists).filter((list) => list.slug !== "home");
 
 const faqs = [
   {

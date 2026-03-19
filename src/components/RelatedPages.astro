@@ -1,5 +1,5 @@
 ---
-import allLists from "../data/words.json";
+import wordsData from "../data/words.json";
 
 interface Props {
   currentSlug: string;
@@ -7,6 +7,7 @@ interface Props {
 
 const { currentSlug } = Astro.props;
 
+const allLists = Object.values(wordsData.lists);
 const relatedLists = allLists.filter((list) => list.slug !== currentSlug);
 ---
 
