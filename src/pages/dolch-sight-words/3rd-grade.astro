@@ -36,7 +36,7 @@ const faqs = [
 >
   <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch 3rd Grade Sight Words</h1>
 
-  <p class="text-gray-600 leading-relaxed mb-6">
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
     The Dolch 3rd grade list is the final level — 41 words that complete the full set of 220 Dolch sight words. Children who master this list have a powerful reading foundation and are well prepared for independent reading at a 3rd grade level and beyond.
   </p>
 
@@ -51,7 +51,7 @@ const faqs = [
     </a>
   </div>
 
-  <div id="flashcard-tool">
+  <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
@@ -60,7 +60,7 @@ const faqs = [
   </div>
 
   <section class="mt-10">
-    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} 3rd Grade Words</h2>
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3 no-print">All {list.wordCount} 3rd Grade Words</h2>
     <WordTable words={list.words} listName={list.name} />
   </section>
 

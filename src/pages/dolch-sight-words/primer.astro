@@ -36,7 +36,7 @@ const faqs = [
 >
   <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch Primer Sight Words</h1>
 
-  <p class="text-gray-600 leading-relaxed mb-6">
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
     The primer list is the second Dolch level, built for kindergarten readers who have already worked through the pre-primer words. With 52 words — the largest of the five grade levels — it introduces new vocabulary that children encounter constantly in early books and classroom materials.
   </p>
 
@@ -51,7 +51,7 @@ const faqs = [
     </a>
   </div>
 
-  <div id="flashcard-tool">
+  <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
@@ -60,7 +60,7 @@ const faqs = [
   </div>
 
   <section class="mt-10">
-    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} Primer Words</h2>
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3 no-print">All {list.wordCount} Primer Words</h2>
     <WordTable words={list.words} listName={list.name} />
   </section>
 

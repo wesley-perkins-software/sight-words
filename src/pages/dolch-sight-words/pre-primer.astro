@@ -36,7 +36,7 @@ const faqs = [
 >
   <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch Pre-Primer Sight Words</h1>
 
-  <p class="text-gray-600 leading-relaxed mb-6">
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
     The pre-primer list is the starting point for early readers — 40 of the most common words in children's books, designed for pre-kindergarten children ages 4 to 5. Mastering these words gives young readers a solid foundation before moving on to the primer list.
   </p>
 
@@ -51,7 +51,7 @@ const faqs = [
     </a>
   </div>
 
-  <div id="flashcard-tool">
+  <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
@@ -60,7 +60,7 @@ const faqs = [
   </div>
 
   <section class="mt-10">
-    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} Pre-Primer Words</h2>
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3 no-print">All {list.wordCount} Pre-Primer Words</h2>
     <WordTable words={list.words} listName={list.name} />
   </section>
 
