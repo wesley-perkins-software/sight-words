@@ -111,9 +111,14 @@ export default function Flashcard({ words, listName }) {
       )}
 
       {/* Progress */}
-      <p className={`text-sm text-gray-500 ${isFullscreen ? 'mb-6' : 'mb-4'}`}>
+      <p className={`text-sm text-gray-500 ${isFullscreen ? 'mb-1' : 'mb-4'}`}>
         Word {index + 1} of {total}
       </p>
+
+      {/* Full screen exit hint */}
+      {isFullscreen && (
+        <p className="text-xs text-gray-400 mb-6">Tap × to exit full screen</p>
+      )}
 
       {/* Card */}
       <div
@@ -128,15 +133,15 @@ export default function Flashcard({ words, listName }) {
             : {
                 backgroundColor: '#ffffff',
                 borderRadius: '16px',
-                boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
-                border: '1.5px solid #e5e7eb',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.13)',
+                border: '1.5px solid #d1d5db',
                 minHeight: '240px',
               }
         }
       >
         <span
-          className={`font-extrabold text-center leading-tight break-words px-6 py-8 ${isFullscreen ? 'text-9xl' : 'text-7xl'}`}
-          style={{ color: '#1e293b' }}
+          className={`font-extrabold text-center leading-tight break-words px-6 ${isFullscreen ? 'text-9xl' : 'text-7xl'}`}
+          style={{ paddingTop: '40px', paddingBottom: '40px', color: '#1e293b' }}
         >
           {currentWord}
         </span>
@@ -161,16 +166,22 @@ export default function Flashcard({ words, listName }) {
         </button>
 
         {/* Speaker button — inside card, bottom right */}
-        <button
-          onClick={handleSpeak}
-          aria-label={`Speak the word ${currentWord}`}
-          className="absolute bottom-3 right-3 flex items-center justify-center w-10 h-10 rounded-full bg-blue-50 text-blue-400 hover:bg-blue-100 hover:text-blue-600 active:bg-blue-200 transition-colors"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
-            <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z" />
-            <path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z" />
-          </svg>
-        </button>
+        <div className="absolute bottom-3 right-3 flex flex-col items-center gap-1">
+          <button
+            onClick={handleSpeak}
+            aria-label={`Speak the word ${currentWord}`}
+            className="flex items-center justify-center rounded-full hover:opacity-90 active:opacity-80 transition-opacity"
+            style={{ backgroundColor: '#2563EB', color: 'white', minWidth: '48px', minHeight: '48px' }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6" aria-hidden="true">
+              <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z" />
+              <path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z" />
+            </svg>
+          </button>
+          {!isFullscreen && (
+            <span className="text-xs text-gray-400 leading-none">Tap to hear</span>
+          )}
+        </div>
       </div>
 
       {/* Navigation */}
@@ -179,7 +190,7 @@ export default function Flashcard({ words, listName }) {
           onClick={goPrev}
           disabled={index === 0}
           aria-label="Previous word"
-          className={`flex-1 flex items-center justify-center rounded-xl bg-gray-100 text-gray-800 font-bold text-lg hover:bg-gray-200 active:bg-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${isFullscreen ? 'min-h-[64px]' : 'min-h-[48px]'}`}
+          className={`flex-1 flex items-center justify-center rounded-xl bg-gray-100 text-gray-800 font-bold text-lg px-6 hover:bg-gray-200 active:bg-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${isFullscreen ? 'min-h-[64px]' : 'min-h-[52px]'}`}
         >
           ← Prev
         </button>
@@ -189,7 +200,7 @@ export default function Flashcard({ words, listName }) {
           <button
             onClick={shuffle}
             aria-label="Shuffle words"
-            className="min-h-[48px] px-5 flex items-center justify-center rounded-xl text-white font-bold hover:opacity-90 active:opacity-80 transition-opacity"
+            className="min-h-[52px] px-6 flex items-center justify-center rounded-xl text-white font-bold hover:opacity-90 active:opacity-80 transition-opacity"
             style={{ backgroundColor: '#F59E0B' }}
           >
             Shuffle
@@ -200,7 +211,7 @@ export default function Flashcard({ words, listName }) {
           onClick={goNext}
           disabled={index === total - 1}
           aria-label="Next word"
-          className={`flex-1 flex items-center justify-center rounded-xl text-white font-bold text-lg hover:opacity-90 active:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity ${isFullscreen ? 'min-h-[64px]' : 'min-h-[48px]'}`}
+          className={`flex-1 flex items-center justify-center rounded-xl text-white font-bold text-lg px-6 hover:opacity-90 active:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity ${isFullscreen ? 'min-h-[64px]' : 'min-h-[52px]'}`}
           style={{ backgroundColor: '#2563EB' }}
         >
           Next →
