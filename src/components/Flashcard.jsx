@@ -115,11 +115,6 @@ export default function Flashcard({ words, listName }) {
         Word {index + 1} of {total}
       </p>
 
-      {/* Full screen exit hint */}
-      {isFullscreen && (
-        <p className="text-xs text-gray-400 mb-6">Tap × to exit full screen</p>
-      )}
-
       {/* Card */}
       <div
         className="relative w-full flex items-center justify-center"
