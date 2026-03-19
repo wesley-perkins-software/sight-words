@@ -68,7 +68,7 @@ const faqs = [
     <PrintButton />
   </div>
 
-  <section class="mt-10">
+  <section class="mt-10 no-print">
     <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for Primer Words</h2>
     <p class="text-gray-600 leading-relaxed mb-4">
       Kindergartners learn best through repetition and routine. Practice at the same time each day — right after school or before bed — so it becomes a habit rather than a chore. A few minutes every day adds up quickly.
@@ -81,7 +81,11 @@ const faqs = [
     </p>
   </section>
 
-  <FAQ faqs={faqs} />
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
 
-  <RelatedPages currentSlug="dolch-primer" />
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-primer" />
+  </div>
 </BaseLayout>

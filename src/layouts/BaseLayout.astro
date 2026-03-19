@@ -35,15 +35,22 @@ const navLinks = [
     font-family: 'Nunito', sans-serif;
   }
 @media print {
-  header, footer, .ad-slot, .flashcard-tool, .no-print {
-    display: none;
+  header,
+  nav,
+  footer,
+  .ad-slot,
+  .flashcard-tool,
+  .no-print {
+    display: none !important;
   }
-  .word-list {
-    column-count: 3;
-    font-size: 24pt;
-  }
+
   body {
     font-size: 12pt;
+  }
+
+  .word-list td {
+    font-size: 18pt;
+    padding: 6pt;
   }
 }
 </style>

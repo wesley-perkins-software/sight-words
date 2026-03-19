@@ -101,7 +101,7 @@ const faqs = [
     <ul class="flex flex-wrap gap-4">
       <li>
         <a
-          href="/dolch-pre-primer"
+          href="/dolch-sight-words/pre-primer"
           class="inline-block px-6 py-3 rounded-xl bg-blue-50 text-blue-700 font-semibold hover:bg-blue-100 transition-colors text-base"
         >
           Dolch Pre-Primer ({dolchPrePrimer.wordCount} words)
@@ -109,7 +109,7 @@ const faqs = [
       </li>
       <li>
         <a
-          href="/dolch-primer"
+          href="/dolch-sight-words/primer"
           class="inline-block px-6 py-3 rounded-xl bg-blue-50 text-blue-700 font-semibold hover:bg-blue-100 transition-colors text-base"
         >
           Dolch Primer ({dolchPrimer.wordCount} words)
@@ -168,7 +168,7 @@ const faqs = [
         {relatedLists.map((list) => (
           <li>
             <a
-              href={`/${list.slug}`}
+              href={list.url || `/${list.slug}`}
               class="inline-block px-6 py-3 rounded-xl bg-white text-blue-700 font-semibold hover:bg-blue-50 transition-colors text-base"
             >
               {list.name} Sight Words List
