@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Flashcard from "../components/Flashcard.jsx";
+import WordTable from "../components/WordTable.astro";
+import RelatedPages from "../components/RelatedPages.astro";
+import FAQ from "../components/FAQ.astro";
+import PrintButton from "../components/PrintButton.astro";
+import wordsData from "../data/words.json";
+
+const list = wordsData.lists["1st-grade"];
+
+const faqs = [
+  {
+    question: "How many sight words should a 1st grader know?",
+    answer: "By the end of 1st grade most children are expected to recognize between 100 and 150 sight words automatically. This includes words from kindergarten plus the new 1st grade words."
+  },
+  {
+    question: "What sight words do 1st graders learn?",
+    answer: "First grade sight words build on kindergarten words and introduce more complex vocabulary. The Dolch 1st grade list includes words like after, again, an, any, as, ask, by, could, every, fly, from, give, going, had, has, her, him, his, how, just, know, let, live, may, of, old, once, open, over, put, round, some, stop, take, thank, them, think, walk, were, and when."
+  },
+  {
+    question: "How is 1st grade different from kindergarten for sight words?",
+    answer: "First grade words are generally more abstract and less concrete than kindergarten words. Where kindergarten words tend to be simple and visual, 1st grade words like 'could', 'going', and 'think' require a deeper understanding of language."
+  },
+  {
+    question: "How do I practice sight words with a 1st grader?",
+    answer: "First graders can handle slightly longer practice sessions of 10 to 15 minutes. Use the flashcard tool daily, focus on words your child misses repeatedly, and encourage them to use sight words in their own writing and reading. Seeing words in context reinforces automatic recognition."
+  }
+];
+---
+
+<BaseLayout
+  title="1st Grade Sight Words List | Free Flashcards"
+  description="Free 1st grade sight words list with interactive flashcards and audio. Build reading fluency with these essential first grade words."
+  canonicalUrl="https://placeholder.com/1st-grade-sight-words"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">1st Grade Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6">
+    First grade sight words build directly on what your child learned in kindergarten. The {list.wordCount} words at this level are more abstract — words like "could," "going," and "think" — but they appear constantly in 1st grade reading materials. Mastering them alongside the kindergarten words puts your child on track for real reading fluency.
+  </p>
+
+  <div class="mb-8 no-print">
+    <a
+      href="#flashcard-tool"
+      class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-white transition-colors"
+      style="background-color: #2563EB; min-height: 52px;"
+      onclick="document.getElementById('flashcard-tool').scrollIntoView({behavior:'smooth'}); return false;"
+    >
+      Practice with Flashcards
+    </a>
+  </div>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} 1st Grade Sight Words</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for 1st Grade Sight Words</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      First graders are building on their kindergarten foundation — not starting over. Review kindergarten words regularly alongside these new ones so they stay sharp. Children who keep old words fresh progress through the 1st grade list faster.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      The goal this year is speed. Your child may know a word but still pause to think. Practice until recognition is instant — the moment they see the word, they say it without hesitation. That automaticity is what frees up mental energy for understanding what they read.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      First graders can also start writing. Encourage them to use sight words in their own sentences or stories. Writing a word is one of the strongest ways to lock it into memory — and it reinforces reading at the same time.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="1st-grade" />
+  </div>
+</BaseLayout>
