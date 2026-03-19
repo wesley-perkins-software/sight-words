@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
 const speak = (word) => {
   const utterance = new SpeechSynthesisUtterance(word);
@@ -18,6 +18,9 @@ function shuffleArray(arr) {
 export default function Flashcard({ words, listName }) {
   const [deck, setDeck] = useState(words);
   const [index, setIndex] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
+  const flashcardRef = useRef(null);
 
   const currentWord = deck[index];
   const total = deck.length;
@@ -39,35 +42,123 @@ export default function Flashcard({ words, listName }) {
     speak(currentWord);
   }, [currentWord]);
 
+  const enterFullscreen = useCallback(() => {
+    const el = flashcardRef.current;
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    } else {
+      // iOS Safari fallback — simulate fullscreen with fixed positioning
+      setIsFakeFullscreen(true);
+      setIsFullscreen(true);
+    }
+  }, []);
+
+  const exitFullscreen = useCallback(() => {
+    if (isFakeFullscreen) {
+      setIsFakeFullscreen(false);
+      setIsFullscreen(false);
+    } else {
+      if (document.exitFullscreen) document.exitFullscreen();
+      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    }
+  }, [isFakeFullscreen]);
+
+  useEffect(() => {
+    const handler = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handler);
+    document.addEventListener('webkitfullscreenchange', handler);
+    return () => {
+      document.removeEventListener('fullscreenchange', handler);
+      document.removeEventListener('webkitfullscreenchange', handler);
+    };
+  }, []);
+
+  const fakeFullscreenStyle = isFakeFullscreen
+    ? {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 9999,
+        background: 'white',
+      }
+    : {};
+
   return (
-    <div className="flashcard-tool flex flex-col items-center py-6 px-4" style={{ backgroundColor: '#f0f4f8' }}>
-      {/* List name */}
-      <p className="text-xs text-gray-400 uppercase tracking-widest mb-1 font-semibold">
-        {listName}
-      </p>
+    <div
+      ref={flashcardRef}
+      className={
+        isFullscreen
+          ? 'flashcard-tool flex flex-col items-center justify-center px-6 py-8'
+          : 'flashcard-tool flex flex-col items-center py-6 px-4'
+      }
+      style={
+        isFullscreen
+          ? { backgroundColor: '#ffffff', minHeight: '100%', ...fakeFullscreenStyle }
+          : { backgroundColor: '#f0f4f8' }
+      }
+    >
+      {/* List name — hidden in fullscreen */}
+      {!isFullscreen && (
+        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1 font-semibold">
+          {listName}
+        </p>
+      )}
 
       {/* Progress */}
-      <p className="text-sm text-gray-500 mb-4">
+      <p className={`text-sm text-gray-500 ${isFullscreen ? 'mb-6' : 'mb-4'}`}>
         Word {index + 1} of {total}
       </p>
 
       {/* Card */}
       <div
         className="relative w-full flex items-center justify-center"
-        style={{
-          backgroundColor: '#ffffff',
-          borderRadius: '16px',
-          boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
-          border: '1.5px solid #e5e7eb',
-          minHeight: '240px',
-        }}
+        style={
+          isFullscreen
+            ? {
+                backgroundColor: '#ffffff',
+                flex: 1,
+                minHeight: '50vh',
+              }
+            : {
+                backgroundColor: '#ffffff',
+                borderRadius: '16px',
+                boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
+                border: '1.5px solid #e5e7eb',
+                minHeight: '240px',
+              }
+        }
       >
         <span
-          className="text-7xl font-extrabold text-center leading-tight break-words px-6 py-8"
+          className={`font-extrabold text-center leading-tight break-words px-6 py-8 ${isFullscreen ? 'text-9xl' : 'text-7xl'}`}
           style={{ color: '#1e293b' }}
         >
           {currentWord}
         </span>
+
+        {/* Fullscreen toggle button — top right of card */}
+        <button
+          onClick={isFullscreen ? exitFullscreen : enterFullscreen}
+          aria-label={isFullscreen ? 'Exit full screen' : 'Enter full screen'}
+          className="absolute top-3 right-3 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700 active:bg-gray-300 transition-colors"
+        >
+          {isFullscreen ? (
+            // Compress / exit fullscreen icon
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+              <path fillRule="evenodd" d="M3.22 3.22a.75.75 0 0 1 1.06 0l3.97 3.97V4.5a.75.75 0 0 1 1.5 0V9a.75.75 0 0 1-.75.75H4.5a.75.75 0 0 1 0-1.5h2.69L3.22 4.28a.75.75 0 0 1 0-1.06Zm17.56 0a.75.75 0 0 1 0 1.06l-3.97 3.97h2.69a.75.75 0 0 1 0 1.5H15a.75.75 0 0 1-.75-.75V4.5a.75.75 0 0 1 1.5 0v2.69l3.97-3.97a.75.75 0 0 1 1.06 0ZM3.75 15a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-2.69l-3.97 3.97a.75.75 0 0 1-1.06-1.06l3.97-3.97H4.5a.75.75 0 0 1-.75-.75Zm10.5 0a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-2.69l3.97 3.97a.75.75 0 1 1-1.06 1.06l-3.97-3.97v2.69a.75.75 0 0 1-1.5 0V15Z" clipRule="evenodd" />
+            </svg>
+          ) : (
+            // Expand / enter fullscreen icon
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+              <path fillRule="evenodd" d="M15 3.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V5.56l-3.97 3.97a.75.75 0 1 1-1.06-1.06l3.97-3.97h-2.69a.75.75 0 0 1-.75-.75Zm-12 0A.75.75 0 0 1 3.75 3h4.5a.75.75 0 0 1 0 1.5H5.56l3.97 3.97a.75.75 0 0 1-1.06 1.06L4.5 5.56v2.69a.75.75 0 0 1-1.5 0v-4.5Zm11.47 11.78a.75.75 0 1 1 1.06-1.06l3.97 3.97v-2.69a.75.75 0 0 1 1.5 0v4.5a.75.75 0 0 1-.75.75h-4.5a.75.75 0 0 1 0-1.5h2.69l-3.97-3.97Zm-4.94-1.06a.75.75 0 0 1 0 1.06L5.56 19.5h2.69a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 1 1.5 0v2.69l3.97-3.97a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
+            </svg>
+          )}
+        </button>
 
         {/* Speaker button — inside card, bottom right */}
         <button
@@ -83,30 +174,33 @@ export default function Flashcard({ words, listName }) {
       </div>
 
       {/* Navigation */}
-      <div className="flex items-center gap-4 mt-6 w-full max-w-sm">
+      <div className={`flex items-center gap-4 w-full max-w-sm ${isFullscreen ? 'mt-8' : 'mt-6'}`}>
         <button
           onClick={goPrev}
           disabled={index === 0}
           aria-label="Previous word"
-          className="flex-1 min-h-[48px] flex items-center justify-center rounded-xl bg-gray-100 text-gray-800 font-bold text-lg hover:bg-gray-200 active:bg-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+          className={`flex-1 flex items-center justify-center rounded-xl bg-gray-100 text-gray-800 font-bold text-lg hover:bg-gray-200 active:bg-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${isFullscreen ? 'min-h-[64px]' : 'min-h-[48px]'}`}
         >
           ← Prev
         </button>
 
-        <button
-          onClick={shuffle}
-          aria-label="Shuffle words"
-          className="min-h-[48px] px-5 flex items-center justify-center rounded-xl text-white font-bold hover:opacity-90 active:opacity-80 transition-opacity"
-          style={{ backgroundColor: '#F59E0B' }}
-        >
-          Shuffle
-        </button>
+        {/* Shuffle — hidden in fullscreen */}
+        {!isFullscreen && (
+          <button
+            onClick={shuffle}
+            aria-label="Shuffle words"
+            className="min-h-[48px] px-5 flex items-center justify-center rounded-xl text-white font-bold hover:opacity-90 active:opacity-80 transition-opacity"
+            style={{ backgroundColor: '#F59E0B' }}
+          >
+            Shuffle
+          </button>
+        )}
 
         <button
           onClick={goNext}
           disabled={index === total - 1}
           aria-label="Next word"
-          className="flex-1 min-h-[48px] flex items-center justify-center rounded-xl text-white font-bold text-lg hover:opacity-90 active:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
+          className={`flex-1 flex items-center justify-center rounded-xl text-white font-bold text-lg hover:opacity-90 active:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity ${isFullscreen ? 'min-h-[64px]' : 'min-h-[48px]'}`}
           style={{ backgroundColor: '#2563EB' }}
         >
           Next →
