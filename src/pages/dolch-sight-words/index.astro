@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flashcard from "../../components/Flashcard.jsx";
+import WordTable from "../../components/WordTable.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import FAQ from "../../components/FAQ.astro";
+import PrintButton from "../../components/PrintButton.astro";
+import wordsData from "../../data/words.json";
+
+const prePrimer = wordsData.lists["dolch-pre-primer"];
+const primer = wordsData.lists["dolch-primer"];
+const firstGrade = wordsData.lists["dolch-1st-grade"];
+const secondGrade = wordsData.lists["dolch-2nd-grade"];
+const thirdGrade = wordsData.lists["dolch-3rd-grade"];
+
+const levels = [
+  { name: "Pre-Primer", href: "/dolch-sight-words/pre-primer", wordCount: prePrimer.wordCount, grade: "Pre-K" },
+  { name: "Primer", href: "/dolch-sight-words/primer", wordCount: primer.wordCount, grade: "Kindergarten" },
+  { name: "1st Grade", href: "/dolch-sight-words/1st-grade", wordCount: firstGrade.wordCount, grade: "1st Grade" },
+  { name: "2nd Grade", href: "/dolch-sight-words/2nd-grade", wordCount: secondGrade.wordCount, grade: "2nd Grade" },
+  { name: "3rd Grade", href: "/dolch-sight-words/3rd-grade", wordCount: thirdGrade.wordCount, grade: "3rd Grade" },
+];
+
+const faqs = [
+  {
+    question: "What are Dolch sight words?",
+    answer: "Dolch sight words are a list of 220 high-frequency words compiled by educator Edward Dolch in 1948. They are organized by grade level from pre-primer through 3rd grade and represent the most common words found in children's books."
+  },
+  {
+    question: "How many Dolch sight words are there?",
+    answer: "There are 220 Dolch service words plus 95 Dolch nouns, making a total of 315 words. The 220 service words are organized into five grade levels: pre-primer (40 words), primer (52 words), 1st grade (41 words), 2nd grade (46 words), and 3rd grade (41 words)."
+  },
+  {
+    question: "What grade level should my child be on?",
+    answer: "Pre-primer words are typically introduced in pre-kindergarten. Primer words are for kindergarten. First, second, and third grade lists align with those grade levels. However every child learns at their own pace — start with pre-primer and move up when your child is comfortable."
+  },
+  {
+    question: "Are Dolch words still used in schools?",
+    answer: "Yes, Dolch words are still widely used in elementary schools across the United States, though some schools have shifted to Fry words or other high-frequency word lists. The core words on the Dolch list appear in virtually every reading curriculum."
+  }
+];
+---
+
+<BaseLayout
+  title="Dolch Sight Words — Complete List by Grade Level"
+  description="Free Dolch sight words lists for every grade level from pre-primer through 3rd grade. Includes interactive flashcards and printable lists."
+  canonicalUrl="https://placeholder.com/dolch-sight-words"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Dolch sight words are 220 high-frequency words compiled by educator Edward Dolch in 1948. They appear so often in children's books that recognizing them instantly — without sounding them out — makes a dramatic difference in reading fluency. The list is organized into five grade levels, from pre-primer through 3rd grade.
+  </p>
+
+  <div id="flashcard-tool">
+    <Flashcard
+      client:load
+      words={prePrimer.words}
+      listName={prePrimer.name}
+    />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Browse by Grade Level</h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {levels.map((level) => (
+        <li>
+          <a
+            href={level.href}
+            class="block px-6 py-4 rounded-xl bg-blue-50 text-blue-700 font-semibold hover:bg-blue-100 transition-colors"
+          >
+            <span class="block text-lg">{level.name}</span>
+            <span class="block text-sm font-normal text-blue-500 mt-1">{level.wordCount} words · {level.grade}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-3">How the Dolch List Is Organized</h2>
+    <p class="text-gray-600 leading-relaxed">
+      The Dolch list is divided into five levels that roughly match the school years in which children are expected to master them — from pre-kindergarten through third grade. Each level builds on the previous one, so children who work through the list in order develop a strong, cumulative foundation for independent reading.
+    </p>
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <FAQ faqs={faqs} />
+
+  <RelatedPages currentSlug="dolch-sight-words" />
+</BaseLayout>
