@@ -4,7 +4,6 @@ import Flashcard from "../../components/Flashcard.jsx";
 import WordTable from "../../components/WordTable.astro";
 import RelatedPages from "../../components/RelatedPages.astro";
 import FAQ from "../../components/FAQ.astro";
-import PrintButton from "../../components/PrintButton.astro";
 import wordsData from "../../data/words.json";
 
 const prePrimer = wordsData.lists["dolch-pre-primer"];
@@ -77,18 +76,18 @@ const faqs = [
     </ul>
   </section>
 
-  <section class="mt-10">
+  <section class="mt-10 no-print">
     <h2 class="text-xl font-bold text-gray-800 mb-3">How the Dolch List Is Organized</h2>
     <p class="text-gray-600 leading-relaxed">
       The Dolch list is divided into five levels that roughly match the school years in which children are expected to master them — from pre-kindergarten through third grade. Each level builds on the previous one, so children who work through the list in order develop a strong, cumulative foundation for independent reading.
     </p>
   </section>
 
-  <div class="mt-6 no-print">
-    <PrintButton />
+  <div class="no-print">
+    <FAQ faqs={faqs} />
   </div>
 
-  <FAQ faqs={faqs} />
-
-  <RelatedPages currentSlug="dolch-sight-words" />
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-sight-words" />
+  </div>
 </BaseLayout>

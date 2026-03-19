@@ -68,7 +68,7 @@ const faqs = [
     <PrintButton />
   </div>
 
-  <section class="mt-10">
+  <section class="mt-10 no-print">
     <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for 3rd Grade Words</h2>
     <p class="text-gray-600 leading-relaxed mb-4">
       By 3rd grade, your child is reading longer texts and encountering these words constantly. Use the flashcard tool for a quick warm-up before reading time — just five minutes to refresh words they're still working on, then let real reading take over.
@@ -81,7 +81,11 @@ const faqs = [
     </p>
   </section>
 
-  <FAQ faqs={faqs} />
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
 
-  <RelatedPages currentSlug="dolch-3rd-grade" />
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-3rd-grade" />
+  </div>
 </BaseLayout>

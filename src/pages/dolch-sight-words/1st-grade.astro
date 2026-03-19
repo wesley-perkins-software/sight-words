@@ -68,7 +68,7 @@ const faqs = [
     <PrintButton />
   </div>
 
-  <section class="mt-10">
+  <section class="mt-10 no-print">
     <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for 1st Grade Words</h2>
     <p class="text-gray-600 leading-relaxed mb-4">
       First graders are reading real books now, which means you can reinforce flashcard practice by pointing out 1st grade Dolch words as they appear in whatever your child is reading. Seeing a word in context right after seeing it on a card cements recognition fast.
@@ -81,7 +81,11 @@ const faqs = [
     </p>
   </section>
 
-  <FAQ faqs={faqs} />
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
 
-  <RelatedPages currentSlug="dolch-1st-grade" />
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-1st-grade" />
+  </div>
 </BaseLayout>

@@ -68,7 +68,7 @@ const faqs = [
     <PrintButton />
   </div>
 
-  <section class="mt-10">
+  <section class="mt-10 no-print">
     <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for 2nd Grade Words</h2>
     <p class="text-gray-600 leading-relaxed mb-4">
       The 2nd grade list has some tricky words. "Because," "always," and "different" are harder to memorize as shapes because they're longer. Tap the speaker icon so your child hears the correct pronunciation alongside seeing the word — both cues together speed up memorization.
@@ -81,7 +81,11 @@ const faqs = [
     </p>
   </section>
 
-  <FAQ faqs={faqs} />
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
 
-  <RelatedPages currentSlug="dolch-2nd-grade" />
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-2nd-grade" />
+  </div>
 </BaseLayout>

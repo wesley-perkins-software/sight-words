@@ -4,6 +4,7 @@
       "name": "Dolch Pre-Primer",
       "grade": "Pre-K",
       "slug": "dolch-pre-primer",
+      "url": "/dolch-sight-words/pre-primer",
       "wordCount": 40,
       "description": "The Dolch Pre-Primer list contains 40 of the most common sight words for pre-kindergarten readers.",
       "words": [
@@ -18,6 +19,7 @@
       "name": "Dolch Primer",
       "grade": "Kindergarten",
       "slug": "dolch-primer",
+      "url": "/dolch-sight-words/primer",
       "wordCount": 52,
       "description": "The Dolch Primer list contains 52 sight words for kindergarten readers.",
       "words": [
@@ -34,6 +36,7 @@
       "name": "Dolch 1st Grade",
       "grade": "1st Grade",
       "slug": "dolch-1st-grade",
+      "url": "/dolch-sight-words/1st-grade",
       "wordCount": 41,
       "description": "The Dolch 1st Grade list contains 41 sight words for first grade readers.",
       "words": [
@@ -49,6 +52,7 @@
       "name": "Dolch 2nd Grade",
       "grade": "2nd Grade",
       "slug": "dolch-2nd-grade",
+      "url": "/dolch-sight-words/2nd-grade",
       "wordCount": 46,
       "description": "The Dolch 2nd Grade list contains 46 sight words for second grade readers.",
       "words": [
@@ -64,6 +68,7 @@
       "name": "Dolch 3rd Grade",
       "grade": "3rd Grade",
       "slug": "dolch-3rd-grade",
+      "url": "/dolch-sight-words/3rd-grade",
       "wordCount": 41,
       "description": "The Dolch 3rd Grade list contains 41 sight words for third grade readers.",
       "words": [
@@ -79,6 +84,7 @@
       "name": "Fry Words 1\u2013100",
       "grade": "1st Grade",
       "slug": "fry-1-100",
+      "url": "/fry-1-100",
       "wordCount": 100,
       "description": "The first 100 Fry sight words are the most frequently appearing words in reading and writing.",
       "words": [
@@ -98,6 +104,7 @@
       "name": "Fry Words 101\u2013200",
       "grade": "2nd Grade",
       "slug": "fry-101-200",
+      "url": "/fry-101-200",
       "wordCount": 100,
       "description": "Fry words 101\u2013200 build on the first 100 and are essential for 2nd grade reading fluency.",
       "words": [
@@ -117,6 +124,7 @@
       "name": "Kindergarten Sight Words",
       "grade": "Kindergarten",
       "slug": "kindergarten",
+      "url": "/kindergarten-sight-words",
       "wordCount": 52,
       "description": "Essential sight words for kindergarten students to master before entering first grade.",
       "words": [
@@ -133,6 +141,7 @@
       "name": "1st Grade Sight Words",
       "grade": "1st Grade",
       "slug": "1st-grade",
+      "url": "/1st-grade-sight-words",
       "wordCount": 41,
       "description": "Sight words for first graders to build reading fluency and confidence.",
       "words": [
@@ -148,6 +157,7 @@
       "name": "2nd Grade Sight Words",
       "grade": "2nd Grade",
       "slug": "2nd-grade",
+      "url": "/2nd-grade-sight-words",
       "wordCount": 46,
       "description": "Second grade sight words to support growing reading independence.",
       "words": [
