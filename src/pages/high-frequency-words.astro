@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Flashcard from "../components/Flashcard.jsx";
+import FAQ from "../components/FAQ.astro";
+import RelatedPages from "../components/RelatedPages.astro";
+import wordsData from "../data/words.json";
+
+const list = wordsData.lists["fry-1-100"];
+
+const faqs = [
+  {
+    question: "Are high frequency words the same as sight words?",
+    answer: "They are closely related but not identical. High frequency words are simply words that appear most often in written text. Sight words are words taught to be recognized instantly on sight — many of which are high frequency words. In practice most teachers and parents use the terms interchangeably."
+  },
+  {
+    question: "What are the most common high frequency words?",
+    answer: "The most common high frequency words in English are: the, of, and, a, to, in, is, you, that, it, he, was, for, on, are, as, with, his, they, and I. These 20 words alone make up approximately 25 percent of all words in typical reading materials."
+  },
+  {
+    question: "How are high frequency words different from phonics?",
+    answer: "Phonics teaches children to decode words by sounding out letters and letter combinations. High frequency words are often taught as whole words to be memorized because many of them do not follow standard phonics rules. Both approaches work together — phonics for decoding new words, sight recognition for the most common ones."
+  },
+  {
+    question: "How many high frequency words should my child know?",
+    answer: "Knowing the first 100 high frequency words covers about 50 percent of words in reading materials. The first 300 covers about 65 percent. Most elementary school programs aim for children to know the first 200 to 300 words by the end of 2nd grade."
+  },
+  {
+    question: "What is the best way to teach high frequency words?",
+    answer: "Short daily practice sessions of 5 to 10 minutes are more effective than longer occasional sessions. Flashcards build instant recognition through repetition. Reading books that contain these words in context reinforces understanding. Using the audio feature to hear words spoken aloud helps children connect the written and spoken forms."
+  }
+];
+---
+
+<BaseLayout
+  title="High Frequency Words — What They Are and How to Teach Them"
+  description="Learn what high frequency words are, how they differ from sight words, and how to help your child master them with free flashcards and lists."
+  canonicalUrl="https://placeholder.com/high-frequency-words"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">High Frequency Words</h1>
+
+  <div class="prose prose-gray max-w-none space-y-5 text-gray-600 leading-relaxed">
+    <p>
+      High frequency words are the words that show up most often in written English. Words like <em>the</em>, <em>and</em>, <em>is</em>, <em>you</em>, and <em>was</em> appear so constantly in books and reading materials that a child who stumbles over them will struggle on nearly every page. Teaching children to recognize these words instantly — without pausing to decode them — is one of the most effective things you can do to build early reading fluency.
+    </p>
+
+    <p>
+      You may have also heard these called "sight words." The two terms are closely related but not exactly the same. High frequency words are defined by how often they appear in text — they are a statistical fact about the English language. Sight words are a teaching strategy — words that educators have decided children should memorize on sight rather than decode phonetically. In practice, there is enormous overlap, and most parents and teachers use the two terms interchangeably.
+    </p>
+
+    <p>
+      Mastering high frequency words matters because reading fluency depends on automaticity. When a child can recognize common words instantly, their working memory is free to focus on meaning — understanding the story, building vocabulary, making inferences. A child who must sound out "the" and "was" every single time they encounter them spends cognitive energy on decoding that should be going toward comprehension.
+    </p>
+
+    <p>
+      The two most widely used high frequency word lists are the <strong>Dolch list</strong> and the <strong>Fry list</strong>. The Dolch list, developed by Edward Dolch in 1948, contains 220 words organized by grade level from pre-primer through 3rd grade. The Fry list, developed by Edward Fry, ranks 1,000 words by frequency of occurrence in reading materials, with the first 300 covering roughly 65 percent of all words a child will encounter in typical books. Both lists are widely used in schools and overlap significantly.
+    </p>
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Practice High Frequency Words</h2>
+    <p class="text-gray-600 leading-relaxed mb-6">
+      The Fry Words 1–100 are the most common high frequency words in English. Use the flashcard tool below to build instant recognition.
+    </p>
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">High Frequency Words vs. Phonics Instruction</h2>
+    <div class="space-y-5 text-gray-600 leading-relaxed">
+      <p>
+        Phonics and high frequency word instruction are complementary approaches to reading — not competing ones. Phonics teaches children the rules that govern how letters and letter combinations represent sounds. It gives children a system for decoding words they have never seen before. For much of the English language, phonics rules work well.
+      </p>
+      <p>
+        But many of the most common words in English do not follow phonics rules consistently. Consider <em>said</em> — phonics would suggest it sounds like "sade," but it doesn't. Or <em>the</em>, <em>of</em>, <em>to</em>, and <em>are</em> — these words are ubiquitous but phonetically irregular. Teaching children to decode them every time is inefficient. It makes more sense to teach them as whole words to be recognized on sight.
+      </p>
+      <p>
+        The research-backed approach combines both: use phonics for decoding unfamiliar words, and build a bank of instantly recognized high frequency words for the most common ones. Children who have both tools available become more fluent readers faster than those who rely on one approach alone.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">How to Teach High Frequency Words at Home</h2>
+    <ul class="space-y-4 text-gray-600 leading-relaxed">
+      <li>
+        <strong class="text-gray-800">Practice in short daily sessions.</strong> Five to ten minutes every day is more effective than one long session on the weekend. Frequent, spaced repetition is how automatic recognition develops.
+      </li>
+      <li>
+        <strong class="text-gray-800">Shuffle the order regularly.</strong> If words are always practiced in the same sequence, children can anticipate the next word rather than truly recognizing it. Mix up the order every session.
+      </li>
+      <li>
+        <strong class="text-gray-800">Read books that use these words in context.</strong> Any early reader from the library will be full of high frequency words. When your child spots a word from their practice list in a real book, point it out — that connection is what makes practice stick.
+      </li>
+      <li>
+        <strong class="text-gray-800">Use the audio feature.</strong> Hearing a word spoken aloud as they see it written helps children connect the written and spoken forms of the word. The flashcard tool above has a built-in speaker button for exactly this purpose.
+      </li>
+    </ul>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="high-frequency-words" />
+  </div>
+</BaseLayout>

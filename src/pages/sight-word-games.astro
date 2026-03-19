@@ -1,0 +1,135 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Flashcard from "../components/Flashcard.jsx";
+import FAQ from "../components/FAQ.astro";
+import RelatedPages from "../components/RelatedPages.astro";
+import wordsData from "../data/words.json";
+
+const list = wordsData.lists["dolch-pre-primer"];
+
+const faqs = [
+  {
+    question: "What are the best sight word games for kindergartners?",
+    answer: "Simple, physical games work best for kindergartners. Sight Word Hop — where you write words on paper plates and children jump to the word you call out — combines movement with learning. Memory match games using word cards are also very effective at this age."
+  },
+  {
+    question: "How do games help children learn sight words?",
+    answer: "Games reduce the pressure of formal practice and create positive associations with reading. When children are having fun they are more likely to stay engaged and attempt words they find difficult. Repetition through games builds the automatic recognition that sight words require."
+  },
+  {
+    question: "How long should a sight word game session be?",
+    answer: "For kindergartners and 1st graders, 10 to 15 minutes is ideal. Younger children lose focus quickly so ending the session while they are still engaged is better than pushing until they are frustrated. Short daily sessions beat occasional long ones."
+  },
+  {
+    question: "Can I use these games for a child who is struggling?",
+    answer: "Yes — games are especially helpful for children who feel anxious about reading practice. Remove the pressure of correct answers and focus on exposure and fun. Celebrate attempts, not just correct answers, and keep the energy positive."
+  }
+];
+---
+
+<BaseLayout
+  title="Sight Word Games — Fun Ways to Practice Sight Words"
+  description="Free sight word games and activities for kids. Fun ways to practice Dolch and Fry sight words at home or in the classroom."
+  canonicalUrl="https://placeholder.com/sight-word-games"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Sight Word Games</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    When sight word practice feels like a game, children stay engaged longer and retain more. The difference between a reluctant child who dreads flashcard drills and one who asks to play again often comes down to how the practice is framed. These games turn repetition into fun.
+  </p>
+
+  <section class="mb-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Start with Flashcards</h2>
+    <p class="text-gray-600 leading-relaxed mb-6">
+      The interactive flashcard tool is the fastest way to get started. Use shuffle mode and full screen to turn it into a game — more on that below.
+    </p>
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Games to Play at Home</h2>
+
+    <div class="space-y-8 text-gray-600 leading-relaxed">
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Sight Word Bingo</h3>
+        <p>Create simple bingo cards by writing sight words in a 4×4 or 5×5 grid — each card should have the same words arranged in different positions. Call out words one at a time while your child marks off the words they hear. The first to get a row wins. This game is excellent for repeated exposure to the same set of words across multiple rounds without your child even noticing how many times they've seen each one.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Sight Word Memory Match</h3>
+        <p>Write each sight word on two index cards to make a matching pair. Shuffle all the cards and lay them face down in a grid. Take turns flipping two cards at a time — if they match, you keep the pair. The player with the most pairs at the end wins. Memory match works well because children must read each word twice per turn: once when they flip it and again when they flip its match. Even "wrong" turns involve reading practice.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Sight Word Hop</h3>
+        <p>Write one sight word on each paper plate. Spread the plates across the floor like stepping stones. Call out a word and have your child jump to it. For more energy, have them hop on one foot or jump with both feet. You can also put the plates in a path and call out words in sequence for your child to hop through. The physical movement helps anchor the words in memory — particularly effective for kinesthetic learners who struggle to sit still for traditional flashcard practice.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Sight Word Hunt</h3>
+        <p>Write sight words on sticky notes and hide them around the house or yard. Give your child a list of the hidden words and send them on a hunt to find and collect them all. When they bring back each word, have them read it aloud before adding it to the "found" pile. You can also do a simpler version: point to objects around the house and ask your child to write the sight word for a small word that describes them (big, little, red, blue). This connects abstract words to real, visible things.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Sight Word Slam</h3>
+        <p>Lay a set of word cards face up on the table. Call out a word and have your child slap the correct card as fast as they can. If you have two children, they can race each other — the first to slap the correct word wins that card. This high-energy game builds speed of recognition, which is exactly what you want: the moment they hear the word, they know what it looks like. Keep the word set small (10–15 words) so the game moves quickly.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Sight Word Sentences</h3>
+        <p>Write sight words on individual cards. Lay out five to eight cards and challenge your child to arrange them into a sentence that makes sense. There are often multiple valid sentences — reward any grammatically sensible arrangement. This game is especially valuable because it teaches children that sight words are not just isolated objects to memorize but building blocks that have meaning when combined. It also develops early writing skills alongside reading.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Games for the Classroom</h2>
+
+    <div class="space-y-8 text-gray-600 leading-relaxed">
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Whole-Class Sight Word Bingo</h3>
+        <p>Give each student a unique bingo card with the current week's sight words. Call words one at a time while students mark their cards. Whole-class bingo is easy to run, requires no materials beyond printed cards, and gives every child in the room repeated exposure to the same word set simultaneously.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Around the World</h3>
+        <p>One student stands next to a seated classmate. Show both students a sight word card. The first to read it correctly moves on to challenge the next student. The goal is to make it "around the world" — past every student in the class. This game rewards speed of recognition and creates a fun competitive energy, though it's best paired with a low-stakes atmosphere where struggling readers don't feel embarrassed.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Sight Word Relay Race</h3>
+        <p>Divide the class into two or three teams. Place a stack of sight word cards at one end of the room and an empty bucket at the other. One student from each team runs to the stack, reads the top card aloud to the teacher, then runs the card to the bucket. The first team to correctly relay all their cards wins. The combination of movement and reading makes this memorable and high-energy.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Word Wall Challenge</h3>
+        <p>Use the classroom word wall as a game board. Call out a definition or a sentence with a missing word ("I ___ going to the store"), and students race to touch the correct word on the wall. Students can also take turns being the caller. Word wall games work well as a transition activity — a quick five-minute round at the start or end of a lesson keeps words fresh without taking significant instructional time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Using Flashcards as a Game</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      The flashcard tool above can feel like a game rather than a drill with a few small changes. Tap <strong>Shuffle</strong> before you start to randomize the order — this adds an element of unpredictability that keeps children engaged. Challenge your child to read each word before you tap Next, and celebrate correct answers with a point, a tally mark, or just enthusiastic praise.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Tap the expand icon to enter <strong>full screen mode</strong>. In full screen, the word fills the entire phone or tablet screen. Hold the device up to your child and ask them to read the word. They can't see the controls, so the experience feels less like an app and more like you're holding up a card. It also works for group practice — hold the device up toward a small group and call on children to read each word.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      You can also use the flashcard tool for a speed challenge: set a timer and see how many words your child can get through before it goes off. Keep score across multiple sessions. Children often become self-motivated to beat their own record, which turns daily practice into something they actually look forward to.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="sight-word-games" />
+  </div>
+</BaseLayout>
