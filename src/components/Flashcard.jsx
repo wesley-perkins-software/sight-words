@@ -21,6 +21,8 @@ export default function Flashcard({ words, listName }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
   const flashcardRef = useRef(null);
+  const touchStartRef = useRef({ x: 0, y: 0 });
+  const touchDeltaRef = useRef({ x: 0, y: 0 });
 
   const currentWord = deck[index];
   const total = deck.length;
@@ -41,6 +43,43 @@ export default function Flashcard({ words, listName }) {
   const handleSpeak = useCallback(() => {
     speak(currentWord);
   }, [currentWord]);
+
+  const handleTouchStart = useCallback((event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    touchDeltaRef.current = { x: 0, y: 0 };
+  }, []);
+
+  const handleTouchMove = useCallback((event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+
+    touchDeltaRef.current = {
+      x: touch.clientX - touchStartRef.current.x,
+      y: touch.clientY - touchStartRef.current.y,
+    };
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    const horizontalDistance = touchDeltaRef.current.x;
+    const verticalDistance = touchDeltaRef.current.y;
+    const swipeThreshold = 56;
+
+    const isHorizontalSwipe =
+      Math.abs(horizontalDistance) >= swipeThreshold
+      && Math.abs(horizontalDistance) > Math.abs(verticalDistance);
+
+    if (!isHorizontalSwipe) return;
+
+    if (horizontalDistance < 0) {
+      goNext();
+      return;
+    }
+
+    goPrev();
+  }, [goNext, goPrev]);
 
   const enterFullscreen = useCallback(() => {
     const el = flashcardRef.current;
@@ -118,12 +157,16 @@ export default function Flashcard({ words, listName }) {
       {/* Card */}
       <div
         className="relative w-full flex items-center justify-center"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         style={
           isFullscreen
             ? {
                 backgroundColor: '#ffffff',
                 flex: 1,
                 minHeight: '50vh',
+                touchAction: 'pan-y',
               }
             : {
                 backgroundColor: '#ffffff',
@@ -180,33 +223,40 @@ export default function Flashcard({ words, listName }) {
       </div>
 
       {/* Navigation */}
-      <div className={`flex items-center gap-4 w-full max-w-sm ${isFullscreen ? 'mt-8' : 'mt-6'}`}>
+      <div
+        className={`flex items-center gap-3 sm:gap-4 w-full ${
+          isFullscreen ? 'max-w-lg mt-6 flex-col sm:flex-row' : 'max-w-sm mt-6'
+        }`}
+      >
         <button
           onClick={goPrev}
           disabled={index === 0}
           aria-label="Previous word"
-          className={`flex-1 flex items-center justify-center rounded-xl bg-gray-100 text-gray-800 font-bold text-lg px-6 hover:bg-gray-200 active:bg-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${isFullscreen ? 'min-h-[64px]' : 'min-h-[52px]'}`}
+          className={`w-full flex items-center justify-center rounded-xl bg-gray-100 text-gray-800 font-bold text-lg px-6 hover:bg-gray-200 active:bg-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${
+            isFullscreen ? 'min-h-[64px] sm:flex-1' : 'min-h-[52px] flex-1'
+          }`}
         >
           ← Prev
         </button>
 
-        {/* Shuffle — hidden in fullscreen */}
-        {!isFullscreen && (
-          <button
-            onClick={shuffle}
-            aria-label="Shuffle words"
-            className="min-h-[52px] px-6 flex items-center justify-center rounded-xl text-white font-bold hover:opacity-90 active:opacity-80 transition-opacity"
-            style={{ backgroundColor: '#F59E0B' }}
-          >
-            Shuffle
-          </button>
-        )}
+        <button
+          onClick={shuffle}
+          aria-label="Shuffle words"
+          className={`w-full px-6 flex items-center justify-center rounded-xl text-white font-bold hover:opacity-90 active:opacity-80 transition-opacity ${
+            isFullscreen ? 'min-h-[64px] sm:flex-1' : 'min-h-[52px]'
+          }`}
+          style={{ backgroundColor: '#F59E0B' }}
+        >
+          Shuffle
+        </button>
 
         <button
           onClick={goNext}
           disabled={index === total - 1}
           aria-label="Next word"
-          className={`flex-1 flex items-center justify-center rounded-xl text-white font-bold text-lg px-6 hover:opacity-90 active:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity ${isFullscreen ? 'min-h-[64px]' : 'min-h-[52px]'}`}
+          className={`w-full flex items-center justify-center rounded-xl text-white font-bold text-lg px-6 hover:opacity-90 active:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity ${
+            isFullscreen ? 'min-h-[64px] sm:flex-1' : 'min-h-[52px] flex-1'
+          }`}
           style={{ backgroundColor: '#2563EB' }}
         >
           Next →
