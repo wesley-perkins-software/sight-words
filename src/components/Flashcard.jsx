@@ -21,13 +21,7 @@ export default function Flashcard({ words, listName }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
   const flashcardRef = useRef(null);
-  const touchGestureRef = useRef({
-    startX: 0,
-    startY: 0,
-    deltaX: 0,
-    deltaY: 0,
-    lock: null,
-  });
+  const touchStartRef = useRef({ x: 0, y: 0 });
 
   const currentWord = deck[index];
   const total = deck.length;
@@ -49,66 +43,27 @@ export default function Flashcard({ words, listName }) {
     speak(currentWord);
   }, [currentWord]);
 
-  const swipeConfig = isFullscreen
-    ? { threshold: 52, lockThreshold: 14, dominanceRatio: 1.2 }
-    : { threshold: 76, lockThreshold: 20, dominanceRatio: 1.5 };
-
   const handleTouchStart = useCallback((event) => {
     const touch = event.touches[0];
     if (!touch) return;
 
-    touchGestureRef.current = {
-      startX: touch.clientX,
-      startY: touch.clientY,
-      deltaX: 0,
-      deltaY: 0,
-      lock: null,
-    };
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
   }, []);
 
-  const handleTouchMove = useCallback((event) => {
-    const touch = event.touches[0];
+  const handleTouchEnd = useCallback((event) => {
+    const touch = event.changedTouches[0] || event.touches[0];
     if (!touch) return;
 
-    const gesture = touchGestureRef.current;
-    const deltaX = touch.clientX - gesture.startX;
-    const deltaY = touch.clientY - gesture.startY;
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
     const absX = Math.abs(deltaX);
     const absY = Math.abs(deltaY);
-
-    gesture.deltaX = deltaX;
-    gesture.deltaY = deltaY;
-
-    if (!gesture.lock && (absX >= swipeConfig.lockThreshold || absY >= swipeConfig.lockThreshold)) {
-      if (absX > absY * swipeConfig.dominanceRatio) {
-        gesture.lock = 'horizontal';
-      } else if (absY > absX) {
-        gesture.lock = 'vertical';
-      }
-    }
-
-    if (isFullscreen && gesture.lock === 'horizontal') {
-      event.preventDefault();
-    }
-  }, [isFullscreen, swipeConfig.dominanceRatio, swipeConfig.lockThreshold]);
-
-  const handleTouchEnd = useCallback(() => {
-    const { deltaX, deltaY, lock } = touchGestureRef.current;
-    const absX = Math.abs(deltaX);
-    const absY = Math.abs(deltaY);
+    const swipeThreshold = isFullscreen ? 44 : 68;
+    const horizontalRatio = isFullscreen ? 1.05 : 1.2;
 
     const isHorizontalSwipe =
-      lock === 'horizontal' &&
-      absX >= swipeConfig.threshold &&
-      absX > absY * swipeConfig.dominanceRatio;
-
-    touchGestureRef.current = {
-      startX: 0,
-      startY: 0,
-      deltaX: 0,
-      deltaY: 0,
-      lock: null,
-    };
+      absX >= swipeThreshold &&
+      absX > absY * horizontalRatio;
 
     if (!isHorizontalSwipe) return;
 
@@ -118,7 +73,7 @@ export default function Flashcard({ words, listName }) {
     }
 
     goPrev();
-  }, [goNext, goPrev, swipeConfig.dominanceRatio, swipeConfig.threshold]);
+  }, [goNext, goPrev, isFullscreen]);
 
   const enterFullscreen = useCallback(() => {
     const el = flashcardRef.current;
@@ -197,7 +152,6 @@ export default function Flashcard({ words, listName }) {
       <div
         className="relative w-full flex items-center justify-center"
         onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         style={
           isFullscreen
@@ -205,7 +159,7 @@ export default function Flashcard({ words, listName }) {
                 backgroundColor: '#ffffff',
                 flex: 1,
                 minHeight: '50vh',
-                touchAction: 'none',
+                touchAction: 'pan-y',
               }
             : {
                 backgroundColor: '#ffffff',
