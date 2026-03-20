@@ -64,20 +64,74 @@ const navLinks = [
   <body class="min-h-screen flex flex-col bg-white text-gray-900">
     <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
       <nav class="max-w-5xl mx-auto px-4 py-3">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div class="flex items-center justify-between gap-2">
           <a
             href="/"
             class="text-xl font-bold text-blue-600 hover:text-blue-700 shrink-0"
           >
             Sight Words
           </a>
-          <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+
+          <button
+            id="mobile-menu-button"
+            type="button"
+            class="md:hidden inline-flex min-h-12 min-w-12 items-center justify-center rounded-lg border border-gray-200 text-gray-700 hover:text-[#2563EB] hover:border-[#2563EB] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 transition-colors"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Toggle navigation menu"
+          >
+            <svg
+              id="menu-open-icon"
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg
+              id="menu-close-icon"
+              class="hidden h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <ul class="hidden md:flex md:flex-wrap gap-x-4 gap-y-1 text-sm">
             {
               navLinks.map(({ href, label }) => (
                 <li>
                   <a
                     href={href}
-                    class="text-gray-600 hover:text-blue-700 font-medium"
+                    class="text-gray-600 hover:text-[#2563EB] font-medium"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div
+          id="mobile-menu"
+          class="md:hidden -mx-4 mt-3 border-y border-gray-200 bg-gray-50 shadow-sm overflow-hidden max-h-0 opacity-0 pointer-events-none transition-all duration-200 ease-out"
+          aria-hidden="true"
+        >
+          <ul class="text-base">
+            {
+              navLinks.map(({ href, label }) => (
+                <li>
+                  <a
+                    href={href}
+                    class="min-h-12 px-4 py-3 flex items-center font-semibold text-gray-700 hover:text-[#2563EB] hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-inset transition-colors"
                   >
                     {label}
                   </a>
@@ -108,5 +162,40 @@ const navLinks = [
     </footer>
 
     <div class="ad-slot"></div>
+
+    <script>
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-open-icon');
+      const closeIcon = document.getElementById('menu-close-icon');
+
+      if (menuButton && mobileMenu && openIcon && closeIcon) {
+        const setMenuState = (isOpen) => {
+          menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+          mobileMenu.classList.toggle('max-h-0', !isOpen);
+          mobileMenu.classList.toggle('opacity-0', !isOpen);
+          mobileMenu.classList.toggle('pointer-events-none', !isOpen);
+          mobileMenu.classList.toggle('max-h-96', isOpen);
+          mobileMenu.classList.toggle('opacity-100', isOpen);
+          openIcon.classList.toggle('hidden', isOpen);
+          closeIcon.classList.toggle('hidden', !isOpen);
+        };
+
+        setMenuState(false);
+
+        menuButton.addEventListener('click', () => {
+          const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+          setMenuState(!expanded);
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+            setMenuState(false);
+            menuButton.focus();
+          }
+        });
+      }
+    </script>
   </body>
 </html>
