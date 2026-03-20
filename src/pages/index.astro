@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Flashcard from "../components/Flashcard.jsx";
 import FAQ from "../components/FAQ.astro";
 import wordsData from "../data/words.json";
+import { getListHref } from "../utils/internalLinks";
 
 const dolchPrePrimer = wordsData.lists["dolch-pre-primer"];
 const dolchPrimer = wordsData.lists["dolch-primer"];
@@ -131,7 +132,7 @@ const faqs = [
     <ul class="flex flex-wrap gap-4">
       <li>
         <a
-          href="/fry-1-100"
+          href={getListHref(fry1100)}
           class="inline-block px-6 py-3 rounded-xl bg-blue-50 text-blue-700 font-semibold hover:bg-blue-100 transition-colors text-base"
         >
           Fry Words 1–100 ({fry1100.wordCount} words)
@@ -168,7 +169,7 @@ const faqs = [
         {relatedLists.map((list) => (
           <li>
             <a
-              href={list.url || `/${list.slug}`}
+              href={getListHref(list)}
               class="inline-block px-6 py-3 rounded-xl bg-white text-blue-700 font-semibold hover:bg-blue-50 transition-colors text-base"
             >
               {list.name} Sight Words List
