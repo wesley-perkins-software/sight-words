@@ -40,23 +40,16 @@ const faqs = [
     First grade sight words build directly on what your child learned in kindergarten. The {list.wordCount} words at this level are more abstract — words like "could," "going," and "think" — but they appear constantly in 1st grade reading materials. Mastering them alongside the kindergarten words puts your child on track for real reading fluency.
   </p>
 
-  <div class="mb-8 no-print">
-    <a
-      href="#flashcard-tool"
-      class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-white transition-colors"
-      style="background-color: #2563EB; min-height: 52px;"
-      onclick="document.getElementById('flashcard-tool').scrollIntoView({behavior:'smooth'}); return false;"
-    >
-      Practice with Flashcards
-    </a>
-  </div>
-
   <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
       listName={list.name}
     />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
   </div>
 
   <section class="mt-10">

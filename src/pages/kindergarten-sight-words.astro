@@ -40,23 +40,16 @@ const faqs = [
     These {list.wordCount} kindergarten sight words give 5 and 6 year olds a strong start in reading. They appear constantly in early books and classroom materials — and recognizing them on sight, without sounding out, is what separates a struggling reader from a confident one. Short daily practice makes all the difference.
   </p>
 
-  <div class="mb-8 no-print">
-    <a
-      href="#flashcard-tool"
-      class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-white transition-colors"
-      style="background-color: #2563EB; min-height: 52px;"
-      onclick="document.getElementById('flashcard-tool').scrollIntoView({behavior:'smooth'}); return false;"
-    >
-      Practice with Flashcards
-    </a>
-  </div>
-
   <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
       listName={list.name}
     />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
   </div>
 
   <section class="mt-10">
