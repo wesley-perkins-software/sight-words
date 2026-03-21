@@ -14,7 +14,6 @@ const fry1100 = wordsData.lists["fry-1-100"];
 const fry101200 = wordsData.lists["fry-101-200"];
 
 const dolchBrowseItems = [
-  { name: "All Dolch Sight Words", href: "/dolch-sight-words", details: "Overview · 5 lists" },
   { name: "Pre-Primer", href: "/dolch-sight-words/pre-primer", details: `${dolchPrePrimer.wordCount} words · Pre-K` },
   { name: "Primer", href: "/dolch-sight-words/primer", details: `${dolchPrimer.wordCount} words · Kindergarten` },
   { name: "1st Grade", href: "/dolch-sight-words/1st-grade", details: `${dolchFirstGrade.wordCount} words · 1st Grade` },
@@ -23,7 +22,6 @@ const dolchBrowseItems = [
 ];
 
 const fryBrowseItems = [
-  { name: "All Fry Sight Words", href: "/fry-sight-words", details: "Overview · 2 lists" },
   { name: "Fry Words 1–100", href: getListHref(fry1100), details: `${fry1100.wordCount} words · Kindergarten / 1st Grade` },
   { name: "Fry Words 101–200", href: getListHref(fry101200), details: `${fry101200.wordCount} words · 1st / 2nd Grade` },
 ];
@@ -115,7 +113,15 @@ const faqs = [
   </section>
 
   <section class="mt-10">
-    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Dolch Sight Words</h2>
+    <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+      <h2 class="text-2xl font-extrabold text-gray-900 border-l-4 border-blue-600 pl-3">Dolch Sight Words</h2>
+      <a
+        href="/dolch-sight-words"
+        class="inline-flex items-center min-h-[48px] px-2 text-sm font-semibold text-blue-700 hover:text-blue-800 underline underline-offset-2"
+      >
+        View all Dolch sight words →
+      </a>
+    </div>
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {dolchBrowseItems.map((item) => (
         <li>
@@ -132,7 +138,15 @@ const faqs = [
   </section>
 
   <section class="mt-10">
-    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Fry Sight Words</h2>
+    <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+      <h2 class="text-2xl font-extrabold text-gray-900 border-l-4 border-blue-600 pl-3">Fry Sight Words</h2>
+      <a
+        href="/fry-sight-words"
+        class="inline-flex items-center min-h-[48px] px-2 text-sm font-semibold text-blue-700 hover:text-blue-800 underline underline-offset-2"
+      >
+        View all Fry sight words →
+      </a>
+    </div>
     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {fryBrowseItems.map((item) => (
         <li>
