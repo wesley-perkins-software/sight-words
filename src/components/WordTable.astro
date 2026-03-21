@@ -28,4 +28,43 @@ for (let i = 0; i < words.length; i += 3) {
       ))}
     </tbody>
   </table>
+
+  <ul class="print-word-list" aria-hidden="true">
+    {words.map((word) => (
+      <li>{word}</li>
+    ))}
+  </ul>
 </div>
+
+<style>
+  .print-word-list {
+    display: none;
+  }
+
+  @media print {
+    .word-list table {
+      display: none;
+    }
+
+    .print-word-list {
+      display: block;
+      columns: 3;
+      column-gap: 0.26in;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      orphans: 3;
+      widows: 3;
+    }
+
+    .print-word-list li {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      padding: 0.026in 0;
+      margin: 0;
+      font-size: 11.5pt;
+      line-height: 1.16;
+      color: #000;
+    }
+  }
+</style>
