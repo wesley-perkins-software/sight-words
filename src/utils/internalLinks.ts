@@ -10,7 +10,6 @@ const staticPageRoutes: Record<string, string> = {
   "what-are-sight-words": "/what-are-sight-words",
   "high-frequency-words": "/high-frequency-words",
   "sight-word-games": "/sight-word-games",
-  "sight-words-flashcards": "/sight-words-flashcards",
   "sight-words-printable": "/sight-words-printable",
   "dolch-sight-words": "/dolch-sight-words",
   "fry-sight-words": "/fry-sight-words",
@@ -37,7 +36,6 @@ export const majorPageLinks = [
   { slug: "kindergarten", label: "Kindergarten Sight Words" },
   { slug: "1st-grade", label: "1st Grade Sight Words" },
   { slug: "2nd-grade", label: "2nd Grade Sight Words" },
-  { slug: "sight-words-flashcards", label: "Sight Words Flashcards" },
   { slug: "sight-words-printable", label: "Printable Sight Word Lists" },
   { slug: "sight-word-games", label: "Sight Word Games" },
 ];
