@@ -35,22 +35,73 @@ const navLinks = [
     font-family: 'Nunito', sans-serif;
   }
 @media print {
+  @page {
+    margin: 0.5in;
+  }
+
   header,
   nav,
   footer,
   .ad-slot,
   .flashcard-tool,
-  .no-print {
+  .no-print,
+  button {
     display: none !important;
   }
 
   body {
-    font-size: 12pt;
+    font-size: 11pt;
+    line-height: 1.25;
+    color: #000;
+    background: #fff;
+  }
+
+  main {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  main > * {
+    display: none !important;
+  }
+
+  main > h1,
+  main > .word-list {
+    display: block !important;
+  }
+
+  main > h1 {
+    margin: 0 0 0.18in 0 !important;
+    font-size: 20pt !important;
+    line-height: 1.15 !important;
+    color: #000 !important;
+  }
+
+  .word-list table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    table-layout: fixed;
+  }
+
+  .word-list tr,
+  .word-list td {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   .word-list td {
-    font-size: 18pt;
-    padding: 6pt;
+    font-size: 12pt !important;
+    line-height: 1.2 !important;
+    padding: 4pt 6pt !important;
+    border: 0.75pt solid #cfcfcf !important;
+    color: #000 !important;
+  }
+
+  .word-list tr:nth-child(odd),
+  .word-list tr:nth-child(even) {
+    background: #fff !important;
   }
 }
 </style>
