@@ -40,16 +40,16 @@ const faqs = [
     The first 100 Fry words are the most common words in the English language. They appear so frequently in print that mastering them alone unlocks roughly half of everything your child will ever read. These words are the foundation — get these right and reading fluency follows naturally.
   </p>
 
-  <div class="mb-8 no-print">
-    <PrintButton />
-  </div>
-
   <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
       listName={list.name}
     />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
   </div>
 
   <section class="mt-10">

@@ -40,16 +40,16 @@ const faqs = [
     The Dolch 2nd grade list contains 46 words designed for children in their second year of school, typically ages 7 to 8. The words at this level are longer and more abstract than earlier lists, with multi-syllable words that children need to recognize automatically to keep their reading fluent.
   </p>
 
-  <div class="mb-8 no-print">
-    <PrintButton />
-  </div>
-
   <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
       listName={list.name}
     />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
   </div>
 
   <section class="mt-10">

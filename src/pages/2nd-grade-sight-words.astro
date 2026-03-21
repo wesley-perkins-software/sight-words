@@ -40,16 +40,16 @@ const faqs = [
     Second grade is a turning point. Your child is building independence as a reader, and these {list.wordCount} words are the ones that will appear on nearly every page. They're more abstract than kindergarten or 1st grade words — words like "because," "would," and "which" — but mastering them automatically means your child's brain is free to focus on understanding the story, not decoding the words.
   </p>
 
-  <div class="mb-8 no-print">
-    <PrintButton />
-  </div>
-
   <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
       listName={list.name}
     />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
   </div>
 
   <section class="mt-10">

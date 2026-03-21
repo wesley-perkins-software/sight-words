@@ -40,16 +40,16 @@ const faqs = [
     The Dolch 1st grade list contains 41 words for children in their first year of formal school, typically ages 6 to 7. These words are a step up from the primer list — slightly more complex and abstract — but mastering them puts a child well on their way to fluent independent reading.
   </p>
 
-  <div class="mb-8 no-print">
-    <PrintButton />
-  </div>
-
   <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
       listName={list.name}
     />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
   </div>
 
   <section class="mt-10">

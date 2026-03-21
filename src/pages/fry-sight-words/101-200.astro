@@ -40,16 +40,16 @@ const faqs = [
     Fry words 101–200 pick up where the first 100 leave off. Words at this level appear slightly less frequently, but they still show up constantly in everyday reading — and the vocabulary begins to grow more varied and context-dependent. Children who have mastered the first 100 words are ready to take on this next set.
   </p>
 
-  <div class="mb-8 no-print">
-    <PrintButton />
-  </div>
-
   <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
       words={list.words}
       listName={list.name}
     />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
   </div>
 
   <section class="mt-10">
