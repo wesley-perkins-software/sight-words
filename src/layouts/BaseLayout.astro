@@ -63,12 +63,7 @@ const navLinks = [
     margin: 0 !important;
   }
 
-  main > * {
-    display: none !important;
-  }
-
-  main > h1,
-  main > .word-list {
+  main > h1 {
     display: block !important;
   }
 
@@ -77,6 +72,24 @@ const navLinks = [
     font-size: 20pt !important;
     line-height: 1.15 !important;
     color: #000 !important;
+  }
+
+  main > p,
+  main > div,
+  main > section,
+  main > aside {
+    display: none !important;
+  }
+
+  main > .word-list,
+  main > section:has(.word-list) {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  main > section:has(.word-list) > h2 {
+    display: none !important;
   }
 
   .word-list table {
