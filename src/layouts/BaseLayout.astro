@@ -9,11 +9,12 @@ const { title, description, canonicalUrl } = Astro.props;
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
-  { href: "/dolch-sight-words", label: "Dolch Words" },
-  { href: "/fry-sight-words", label: "Fry Words" },
-  { href: "/kindergarten-sight-words", label: "Kindergarten" },
+  { href: "/", label: "Home" },
+  { href: "/dolch-sight-words", label: "Dolch Sight Words" },
+  { href: "/fry-sight-words", label: "Fry Sight Words" },
+  { href: "/kindergarten-sight-words", label: "By Grade" },
+  { href: "/sight-words-printable", label: "Printables" },
   { href: "/sight-word-games", label: "Games" },
-  { href: "/sight-words-printable", label: "Printable" },
 ];
 ---
 
@@ -214,11 +215,11 @@ const navLinks = [
     <footer class="mt-auto" style="background-color: #1e293b;">
       <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-white">
         <div class="flex flex-wrap gap-x-4 gap-y-1 mb-3">
-          <a href="/dolch-sight-words" class="text-white hover:text-blue-300 transition-colors">Dolch Words</a>
-          <a href="/fry-sight-words" class="text-white hover:text-blue-300 transition-colors">Fry Words</a>
-          <a href="/kindergarten-sight-words" class="text-white hover:text-blue-300 transition-colors">Kindergarten</a>
-          <a href="/sight-word-games" class="text-white hover:text-blue-300 transition-colors">Games</a>
-          <a href="/sight-words-printable" class="text-white hover:text-blue-300 transition-colors">Printable</a>
+          {
+            navLinks.map(({ href, label }) => (
+              <a href={href} class="text-white hover:text-blue-300 transition-colors">{label}</a>
+            ))
+          }
         </div>
         <p class="text-slate-400">Free to use — no sign-up required.</p>
         <p class="text-slate-500 mt-1">&copy; {currentYear} Sight Words. All rights reserved.</p>
