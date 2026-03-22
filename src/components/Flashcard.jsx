@@ -144,13 +144,13 @@ export default function Flashcard({ words, listName }) {
     >
       {/* List name — hidden in fullscreen */}
       {!isFullscreen && (
-        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1 font-semibold">
+        <p className="text-xs text-gray-500 uppercase tracking-widest mb-1 font-semibold">
           {listName}
         </p>
       )}
 
       {/* Progress */}
-      <p className={`text-sm text-gray-500 ${isFullscreen ? 'mb-1' : 'mb-4'}`}>
+      <p className={`text-sm text-gray-600 ${isFullscreen ? 'mb-1' : 'mb-4'}`}>
         Word {index + 1} of {total}
       </p>
 
@@ -188,7 +188,7 @@ export default function Flashcard({ words, listName }) {
         <button
           onClick={isFullscreen ? exitFullscreen : enterFullscreen}
           aria-label={isFullscreen ? 'Exit full screen' : 'Enter full screen'}
-          className="absolute top-3 right-3 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700 active:bg-gray-300 transition-colors"
+          className="absolute top-3 right-3 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800 active:bg-gray-300 transition-colors"
         >
           {isFullscreen ? (
             // Compress / exit fullscreen icon
@@ -217,7 +217,7 @@ export default function Flashcard({ words, listName }) {
             </svg>
           </button>
           {!isFullscreen && (
-            <span className="text-xs text-gray-400 leading-none">Tap to hear</span>
+            <span className="text-xs text-gray-500 leading-none">Tap to hear</span>
           )}
         </div>
       </div>
