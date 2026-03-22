@@ -157,7 +157,7 @@ export default function Flashcard({ words, listName }) {
       {/* Card */}
       <div
         className={`relative w-full flex items-center justify-center ${
-          isFullscreen ? '' : 'max-w-4xl'
+          isFullscreen ? '' : 'lg:max-w-3xl'
         }`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -238,8 +238,8 @@ export default function Flashcard({ words, listName }) {
               isFullscreen ? 'sm:min-h-[60px]' : ''
             } ${
               index === 0
-                ? 'bg-gray-200 text-gray-600 border border-gray-300 cursor-not-allowed'
-                : 'bg-gray-100 text-gray-800 border border-gray-200 hover:bg-gray-200 active:bg-gray-300'
+                ? 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'
+                : 'bg-slate-200 text-slate-800 border border-slate-300 hover:bg-slate-300 active:bg-slate-400'
             }`}
           >
             ← Prev
