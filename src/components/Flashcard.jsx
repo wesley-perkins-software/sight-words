@@ -156,7 +156,9 @@ export default function Flashcard({ words, listName }) {
 
       {/* Card */}
       <div
-        className="relative w-full flex items-center justify-center"
+        className={`relative w-full flex items-center justify-center ${
+          isFullscreen ? '' : 'max-w-4xl'
+        }`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -224,17 +226,10 @@ export default function Flashcard({ words, listName }) {
 
       {/* Navigation */}
       <div
-        className={`w-full ${
+        className={`w-full grid grid-cols-3 gap-2 ${
           isFullscreen ? 'max-w-2xl mt-5' : 'max-w-xl mt-4'
         }`}
       >
-        <div
-          className={`grid grid-cols-3 gap-2 rounded-2xl border p-2 ${
-            isFullscreen
-              ? 'border-gray-200 bg-gray-50/90 shadow-sm'
-              : 'border-slate-200 bg-white/90 shadow-md shadow-slate-200/60'
-          }`}
-        >
           <button
             onClick={goPrev}
             disabled={index === 0}
@@ -243,7 +238,7 @@ export default function Flashcard({ words, listName }) {
               isFullscreen ? 'sm:min-h-[60px]' : ''
             } ${
               index === 0
-                ? 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'
+                ? 'bg-gray-200 text-gray-600 border border-gray-300 cursor-not-allowed'
                 : 'bg-gray-100 text-gray-800 border border-gray-200 hover:bg-gray-200 active:bg-gray-300'
             }`}
           >
@@ -276,7 +271,6 @@ export default function Flashcard({ words, listName }) {
           >
             Next →
           </button>
-        </div>
       </div>
     </div>
   );
