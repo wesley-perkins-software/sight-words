@@ -224,43 +224,59 @@ export default function Flashcard({ words, listName }) {
 
       {/* Navigation */}
       <div
-        className={`flex items-center gap-3 sm:gap-4 w-full ${
-          isFullscreen ? 'max-w-lg mt-6 flex-col sm:flex-row' : 'max-w-sm mt-6'
+        className={`w-full ${
+          isFullscreen ? 'max-w-2xl mt-5' : 'max-w-xl mt-4'
         }`}
       >
-        <button
-          onClick={goPrev}
-          disabled={index === 0}
-          aria-label="Previous word"
-          className={`w-full flex items-center justify-center rounded-xl bg-gray-100 text-gray-800 font-bold text-lg px-6 hover:bg-gray-200 active:bg-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${
-            isFullscreen ? 'min-h-[64px] sm:flex-1' : 'min-h-[52px] flex-1'
+        <div
+          className={`grid grid-cols-3 gap-2 rounded-2xl border p-2 ${
+            isFullscreen
+              ? 'border-gray-200 bg-gray-50/90 shadow-sm'
+              : 'border-slate-200 bg-white/90 shadow-md shadow-slate-200/60'
           }`}
         >
-          ← Prev
-        </button>
+          <button
+            onClick={goPrev}
+            disabled={index === 0}
+            aria-label="Previous word"
+            className={`flex items-center justify-center rounded-xl font-bold px-4 text-base sm:text-lg min-h-[52px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-slate-300 ${
+              isFullscreen ? 'sm:min-h-[60px]' : ''
+            } ${
+              index === 0
+                ? 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'
+                : 'bg-gray-100 text-gray-800 border border-gray-200 hover:bg-gray-200 active:bg-gray-300'
+            }`}
+          >
+            ← Prev
+          </button>
 
-        <button
-          onClick={shuffle}
-          aria-label="Shuffle words"
-          className={`w-full px-6 flex items-center justify-center rounded-xl text-white font-bold hover:opacity-90 active:opacity-80 transition-opacity ${
-            isFullscreen ? 'min-h-[64px] sm:flex-1' : 'min-h-[52px]'
-          }`}
-          style={{ backgroundColor: '#F59E0B' }}
-        >
-          Shuffle
-        </button>
+          <button
+            onClick={shuffle}
+            aria-label="Shuffle words"
+            className={`flex items-center justify-center rounded-xl text-white font-bold px-4 text-base sm:text-lg min-h-[52px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-amber-300 hover:brightness-95 active:brightness-90 ${
+              isFullscreen ? 'sm:min-h-[60px]' : ''
+            }`}
+            style={{ backgroundColor: '#F59E0B' }}
+          >
+            Shuffle
+          </button>
 
-        <button
-          onClick={goNext}
-          disabled={index === total - 1}
-          aria-label="Next word"
-          className={`w-full flex items-center justify-center rounded-xl text-white font-bold text-lg px-6 hover:opacity-90 active:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity ${
-            isFullscreen ? 'min-h-[64px] sm:flex-1' : 'min-h-[52px] flex-1'
-          }`}
-          style={{ backgroundColor: '#2563EB' }}
-        >
-          Next →
-        </button>
+          <button
+            onClick={goNext}
+            disabled={index === total - 1}
+            aria-label="Next word"
+            className={`flex items-center justify-center rounded-xl text-white font-bold px-4 text-base sm:text-lg min-h-[52px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-blue-300 ${
+              isFullscreen ? 'sm:min-h-[60px]' : ''
+            } ${
+              index === total - 1
+                ? 'bg-blue-300/80 cursor-not-allowed'
+                : 'hover:brightness-95 active:brightness-90'
+            }`}
+            style={{ backgroundColor: index === total - 1 ? '#93C5FD' : '#2563EB' }}
+          >
+            Next →
+          </button>
+        </div>
       </div>
     </div>
   );
