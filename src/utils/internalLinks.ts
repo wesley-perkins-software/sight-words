@@ -13,6 +13,7 @@ const staticPageRoutes: Record<string, string> = {
   "sight-words-printable": "/sight-words-printable",
   "dolch-sight-words": "/dolch-sight-words",
   "fry-sight-words": "/fry-sight-words",
+  "grade-level-sight-words": "/grade-level-sight-words",
 };
 
 export function getListHref(list: { slug: string; url?: string }) {
@@ -33,6 +34,7 @@ export const majorPageLinks = [
   { slug: "home", label: "Sight Words Home" },
   { slug: "dolch-sight-words", label: "Dolch Sight Words Hub" },
   { slug: "fry-sight-words", label: "Fry Sight Words Hub" },
+  { slug: "grade-level-sight-words", label: "Grade Level Sight Words Hub" },
   { slug: "kindergarten", label: "Kindergarten Sight Words" },
   { slug: "1st-grade", label: "1st Grade Sight Words" },
   { slug: "2nd-grade", label: "2nd Grade Sight Words" },
