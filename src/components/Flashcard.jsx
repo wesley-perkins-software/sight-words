@@ -238,7 +238,7 @@ export default function Flashcard({ words, listName }) {
             } ${
               index === 0
                 ? 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'
-                : 'bg-blue-100 text-blue-800 border border-blue-200 hover:bg-blue-200 active:bg-blue-300'
+                : 'bg-slate-100 text-slate-800 border border-slate-300 hover:bg-slate-200 active:bg-slate-300'
             }`}
           >
             ← Prev
