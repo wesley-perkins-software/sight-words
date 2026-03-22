@@ -22,7 +22,6 @@ export default function Flashcard({ words, listName }) {
   const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
   const flashcardRef = useRef(null);
   const touchStartRef = useRef({ x: 0, y: 0 });
-  const touchDeltaRef = useRef({ x: 0, y: 0 });
 
   const currentWord = deck[index];
   const total = deck.length;
@@ -49,37 +48,32 @@ export default function Flashcard({ words, listName }) {
     if (!touch) return;
 
     touchStartRef.current = { x: touch.clientX, y: touch.clientY };
-    touchDeltaRef.current = { x: 0, y: 0 };
   }, []);
 
-  const handleTouchMove = useCallback((event) => {
-    const touch = event.touches[0];
+  const handleTouchEnd = useCallback((event) => {
+    const touch = event.changedTouches[0] || event.touches[0];
     if (!touch) return;
 
-    touchDeltaRef.current = {
-      x: touch.clientX - touchStartRef.current.x,
-      y: touch.clientY - touchStartRef.current.y,
-    };
-  }, []);
-
-  const handleTouchEnd = useCallback(() => {
-    const horizontalDistance = touchDeltaRef.current.x;
-    const verticalDistance = touchDeltaRef.current.y;
-    const swipeThreshold = 56;
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+    const swipeThreshold = isFullscreen ? 44 : 68;
+    const horizontalRatio = isFullscreen ? 1.05 : 1.2;
 
     const isHorizontalSwipe =
-      Math.abs(horizontalDistance) >= swipeThreshold
-      && Math.abs(horizontalDistance) > Math.abs(verticalDistance);
+      absX >= swipeThreshold &&
+      absX > absY * horizontalRatio;
 
     if (!isHorizontalSwipe) return;
 
-    if (horizontalDistance < 0) {
+    if (deltaX < 0) {
       goNext();
       return;
     }
 
     goPrev();
-  }, [goNext, goPrev]);
+  }, [goNext, goPrev, isFullscreen]);
 
   const enterFullscreen = useCallback(() => {
     const el = flashcardRef.current;
@@ -158,7 +152,6 @@ export default function Flashcard({ words, listName }) {
       <div
         className="relative w-full flex items-center justify-center"
         onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         style={
           isFullscreen
@@ -174,6 +167,7 @@ export default function Flashcard({ words, listName }) {
                 boxShadow: '0 8px 32px rgba(0,0,0,0.13)',
                 border: '1.5px solid #d1d5db',
                 minHeight: '240px',
+                touchAction: 'pan-y',
               }
         }
       >
@@ -224,16 +218,16 @@ export default function Flashcard({ words, listName }) {
 
       {/* Navigation */}
       <div
-        className={`flex items-center gap-3 sm:gap-4 w-full ${
-          isFullscreen ? 'max-w-lg mt-6 flex-col sm:flex-row' : 'max-w-sm mt-6'
-        }`}
+        className={`mt-6 w-full grid grid-cols-3 items-center ${isFullscreen ? 'max-w-xl gap-2.5' : 'max-w-md gap-2'}`}
       >
         <button
           onClick={goPrev}
           disabled={index === 0}
           aria-label="Previous word"
-          className={`w-full flex items-center justify-center rounded-xl bg-gray-100 text-gray-800 font-bold text-lg px-6 hover:bg-gray-200 active:bg-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${
-            isFullscreen ? 'min-h-[64px] sm:flex-1' : 'min-h-[52px] flex-1'
+          className={`w-full flex items-center justify-center rounded-xl whitespace-nowrap px-3 font-semibold hover:bg-gray-200 active:bg-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${
+            isFullscreen
+              ? 'min-h-[48px] bg-gray-50 text-gray-700 text-base'
+              : 'min-h-[52px] bg-gray-100 text-gray-800 text-base'
           }`}
         >
           ← Prev
@@ -242,8 +236,8 @@ export default function Flashcard({ words, listName }) {
         <button
           onClick={shuffle}
           aria-label="Shuffle words"
-          className={`w-full px-6 flex items-center justify-center rounded-xl text-white font-bold hover:opacity-90 active:opacity-80 transition-opacity ${
-            isFullscreen ? 'min-h-[64px] sm:flex-1' : 'min-h-[52px]'
+          className={`w-full flex items-center justify-center rounded-xl whitespace-nowrap px-3 font-semibold text-white hover:opacity-90 active:opacity-80 transition-opacity ${
+            isFullscreen ? 'min-h-[48px] text-base' : 'min-h-[52px] text-base'
           }`}
           style={{ backgroundColor: '#F59E0B' }}
         >
@@ -254,8 +248,8 @@ export default function Flashcard({ words, listName }) {
           onClick={goNext}
           disabled={index === total - 1}
           aria-label="Next word"
-          className={`w-full flex items-center justify-center rounded-xl text-white font-bold text-lg px-6 hover:opacity-90 active:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity ${
-            isFullscreen ? 'min-h-[64px] sm:flex-1' : 'min-h-[52px] flex-1'
+          className={`w-full flex items-center justify-center rounded-xl whitespace-nowrap px-3 font-semibold text-white hover:opacity-90 active:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity ${
+            isFullscreen ? 'min-h-[48px] text-base' : 'min-h-[52px] text-base'
           }`}
           style={{ backgroundColor: '#2563EB' }}
         >
