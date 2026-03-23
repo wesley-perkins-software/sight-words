@@ -30,37 +30,47 @@ const faqs = [
   {
     question: "What are sight words?",
     answer:
-      "Sight words are common words that children are taught to recognize instantly, without needing to sound them out. They appear so frequently in text that being able to read them automatically helps children read faster and more fluently.",
+      "Sight words are high-frequency words that children are taught to recognize instantly — without sounding them out. Words like 'the', 'said', 'was', and 'they' appear so often in books that recognizing them on sight dramatically speeds up reading fluency. Most reading programs begin teaching sight words in pre-K and kindergarten.",
+  },
+  {
+    question: "What are the most common sight words for beginners?",
+    answer:
+      "The most common beginner sight words include: the, a, and, is, it, in, was, he, she, for, on, are, as, with, his, they, at, be, this, from. These appear in almost every children's book and are the foundation of early reading. The Dolch pre-primer list is the standard starting point for pre-K and kindergarten learners.",
   },
   {
     question: "What is the difference between Dolch and Fry sight words?",
     answer:
-      "Dolch words are a list of 220 common words compiled by Edward Dolch in 1948, organized by grade level from pre-primer through 3rd grade. Fry words are a more modern list of 1000 words compiled by Edward Fry, ranked by frequency of use in reading materials.",
+      "Dolch words are a list of 220 common words compiled by Edward Dolch in 1948, organized by grade level from pre-primer through 3rd grade. Fry words are a more modern list of 1,000 words compiled by Dr. Edward Fry, ranked by how frequently they appear in printed text. Both lists are widely used in schools — Dolch is more common in early grades, while Fry extends further for 2nd grade and beyond.",
   },
   {
     question: "How many sight words should my kindergartner know?",
     answer:
-      "Most kindergartners are expected to know between 20 and 50 sight words by the end of the school year. The Dolch pre-primer and primer lists are the standard starting point.",
+      "Most kindergartners are expected to recognize between 20 and 50 sight words by the end of the school year. The Dolch pre-primer list (40 words) and primer list (52 words) are the standard targets. By the end of 1st grade, most children should know all 220 Dolch words.",
+  },
+  {
+    question: "Are these flashcards free to use and print?",
+    answer:
+      "Yes — everything on this site is completely free. No sign-up, no subscription, no app to download. The flashcards work in your browser on any phone or tablet. You can also print the word lists directly from any list page using your browser's print function.",
   },
   {
     question: "How do I use these flashcards?",
     answer:
-      "Tap the speaker icon to hear the word spoken aloud. Use the Next and Previous buttons to move through the list. Tap Shuffle to practice in a random order. You can hold your phone up to your child so they can see the word clearly on the screen.",
+      "Tap the speaker icon to hear the word spoken aloud. Use the Next and Previous buttons to move through the list. Tap Shuffle any time to practice in a random order. The flashcard is designed to be held up to your child on your phone — large text, simple layout. Five minutes of daily practice is more effective than longer, less frequent sessions.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Sight Words — Free Flashcards, Lists & Printables"
-  description="Free sight words flashcards, lists, and printables for kindergarten through 2nd grade. Includes Dolch and Fry word lists with audio."
+  title="Free Sight Words Flashcards, Lists & Printables — Dolch & Fry"
+  description="Free sight word flashcards, printable word lists, and audio practice for pre-K through 3rd grade. Covers all Dolch and Fry sight words. No sign-up needed."
   canonicalUrl="https://placeholder.com"
 >
-  <h1 class="text-3xl font-bold text-gray-900 mb-4">Sight Words</h1>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Free Sight Words Flashcards & Word Lists</h1>
 
   <p class="text-gray-600 leading-relaxed mb-8">
-    Free flashcards, word lists, and printables for every grade level. Practice
-    Dolch and Fry sight words with audio — no sign-up required. Works great on
-    your phone.
+    Practice Dolch and Fry sight words with free interactive flashcards — audio
+    included, no sign-up required. Covers every grade level from pre-K through
+    3rd grade. Works on your phone. Print any list in seconds.
   </p>
 
   <div id="flashcard-tool">
@@ -149,12 +159,13 @@ const faqs = [
 
   <section class="mt-10">
     <h2 class="text-xl font-bold text-gray-800 mb-3">
-      How to use these flashcards
+      Sight Word Practice Tips
     </h2>
     <p class="text-gray-600 leading-relaxed">
-      Tap the speaker icon to hear the word, then use Next and Previous to move
-      through the list. Hit Shuffle any time to mix things up. Five minutes a
-      day is enough — consistency matters more than long sessions.
+      Tap the speaker icon to hear the word read aloud, then use Next and
+      Previous to move through the list. Hit Shuffle any time to practice in a
+      random order. Five minutes a day beats one long session — short, daily
+      sight word practice is what actually builds fluency.
     </p>
   </section>
 
