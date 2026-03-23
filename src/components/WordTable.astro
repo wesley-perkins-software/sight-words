@@ -42,14 +42,21 @@ for (let i = 0; i < words.length; i += 3) {
   }
 
   @media print {
+    .word-list {
+      overflow: visible !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
     .word-list table {
       display: none;
     }
 
     .print-word-list {
-      display: block;
-      columns: 3;
-      column-gap: 0.26in;
+      display: block !important;
+      column-count: 3;
+      column-gap: 0.22in;
+      column-fill: auto;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -59,11 +66,12 @@ for (let i = 0; i < words.length; i += 3) {
 
     .print-word-list li {
       break-inside: avoid;
+      break-inside: avoid-column;
       page-break-inside: avoid;
-      padding: 0.026in 0;
+      padding: 0.02in 0;
       margin: 0;
-      font-size: 11.5pt;
-      line-height: 1.16;
+      font-size: 11pt;
+      line-height: 1.14;
       color: #000;
     }
   }
