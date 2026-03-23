@@ -54,9 +54,13 @@ for (let i = 0; i < words.length; i += 3) {
 
     .print-word-list {
       display: block !important;
+      -webkit-column-count: 3;
       column-count: 3;
+      -webkit-column-gap: 0.22in;
       column-gap: 0.22in;
-      column-fill: auto;
+      -webkit-column-fill: balance;
+      column-fill: balance;
+      column-width: auto;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -66,7 +70,7 @@ for (let i = 0; i < words.length; i += 3) {
 
     .print-word-list li {
       break-inside: avoid;
-      break-inside: avoid-column;
+      -webkit-column-break-inside: avoid;
       page-break-inside: avoid;
       padding: 0.02in 0;
       margin: 0;
