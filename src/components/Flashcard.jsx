@@ -1,8 +1,27 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 
+const PREFERRED_VOICES = [
+  'Google US English',
+  'Google UK English Female',
+  'Samantha',
+  'Karen',
+  'Daniel',
+];
+
+const getPreferredVoice = () => {
+  const voices = window.speechSynthesis.getVoices();
+  for (const name of PREFERRED_VOICES) {
+    const match = voices.find((v) => v.name === name);
+    if (match) return match;
+  }
+  return voices.find((v) => v.lang.startsWith('en')) ?? null;
+};
+
 const speak = (word) => {
   const utterance = new SpeechSynthesisUtterance(word);
   utterance.rate = 0.8;
+  const voice = getPreferredVoice();
+  if (voice) utterance.voice = voice;
   window.speechSynthesis.speak(utterance);
 };
 
