@@ -252,8 +252,8 @@ export default function Flashcard({ words, listName }) {
             onClick={goPrev}
             disabled={index === 0}
             aria-label="Previous word"
-            className={`flex items-center justify-center rounded-xl font-bold px-4 text-base sm:text-lg min-h-[52px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-slate-300 ${
-              isFullscreen ? 'sm:min-h-[60px]' : ''
+            className={`flex items-center justify-center rounded-xl font-bold px-3 sm:px-4 text-base sm:text-[1.05rem] min-h-[50px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-slate-300 ${
+              isFullscreen ? 'sm:min-h-[56px]' : ''
             } ${
               index === 0
                 ? 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'
@@ -266,8 +266,8 @@ export default function Flashcard({ words, listName }) {
           <button
             onClick={shuffle}
             aria-label="Shuffle words"
-            className={`flex items-center justify-center rounded-xl text-white font-bold px-4 text-base sm:text-lg min-h-[52px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-amber-300 hover:brightness-95 active:brightness-90 ${
-              isFullscreen ? 'sm:min-h-[60px]' : ''
+            className={`flex items-center justify-center rounded-xl text-white font-bold px-3 sm:px-4 text-base sm:text-[1.05rem] min-h-[50px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-amber-300 hover:brightness-95 active:brightness-90 ${
+              isFullscreen ? 'sm:min-h-[56px]' : ''
             }`}
             style={{ backgroundColor: '#F59E0B' }}
           >
@@ -278,8 +278,8 @@ export default function Flashcard({ words, listName }) {
             onClick={goNext}
             disabled={index === total - 1}
             aria-label="Next word"
-            className={`flex items-center justify-center rounded-xl text-white font-bold px-4 text-base sm:text-lg min-h-[52px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-blue-300 ${
-              isFullscreen ? 'sm:min-h-[60px]' : ''
+            className={`flex items-center justify-center rounded-xl text-white font-bold px-3 sm:px-4 text-base sm:text-[1.05rem] min-h-[50px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-blue-300 ${
+              isFullscreen ? 'sm:min-h-[56px]' : ''
             } ${
               index === total - 1
                 ? 'bg-blue-300/80 cursor-not-allowed'
