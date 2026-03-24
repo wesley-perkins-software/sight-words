@@ -39,6 +39,7 @@ const faqs = [
 
   <p class="text-gray-600 leading-relaxed mb-8">
     Many parents and teachers look for sight words by grade level because it is an easy way to choose a starting point and create a simple daily routine. In many classrooms, children are introduced to common sight words for this grade as they build reading fluency. That said, children progress at different rates, so grade-level lists are best used as a practical guide, not a strict rulebook. If you're not sure where to start, you're not alone—many families begin with one level and adjust as confidence grows.
+    For cross-checking by word system, you can compare progress with <RelatedPages currentSlug="grade-level-sight-words" variant="inline" slugs={["kindergarten", "1st-grade"]} maxLinks={2} /> as your child advances.
   </p>
 
   <div id="flashcard-tool" class="no-print">
@@ -70,5 +71,9 @@ const faqs = [
 
   <div class="no-print">
     <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="grade-level-sight-words" title="Try next" maxLinks={3} />
   </div>
 </BaseLayout>
