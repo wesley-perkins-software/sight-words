@@ -12,6 +12,22 @@ const dolchSecondGrade = wordsData.lists["dolch-2nd-grade"];
 const dolchThirdGrade = wordsData.lists["dolch-3rd-grade"];
 const fry1100 = wordsData.lists["fry-1-100"];
 const fry101200 = wordsData.lists["fry-101-200"];
+const kindergarten = wordsData.lists["kindergarten"];
+const gradeOne = wordsData.lists["1st-grade"];
+const gradeTwo = wordsData.lists["2nd-grade"];
+
+const flashcardLists = [
+  { key: "dolch-pre-primer", label: "Pre-Primer",  group: "Dolch",    name: dolchPrePrimer.name,   grade: dolchPrePrimer.grade,   wordCount: dolchPrePrimer.wordCount,   words: dolchPrePrimer.words },
+  { key: "dolch-primer",     label: "Primer",      group: "Dolch",    name: dolchPrimer.name,      grade: dolchPrimer.grade,      wordCount: dolchPrimer.wordCount,      words: dolchPrimer.words },
+  { key: "dolch-1st-grade",  label: "1st Grade",   group: "Dolch",    name: dolchFirstGrade.name,  grade: dolchFirstGrade.grade,  wordCount: dolchFirstGrade.wordCount,  words: dolchFirstGrade.words },
+  { key: "dolch-2nd-grade",  label: "2nd Grade",   group: "Dolch",    name: dolchSecondGrade.name, grade: dolchSecondGrade.grade, wordCount: dolchSecondGrade.wordCount, words: dolchSecondGrade.words },
+  { key: "dolch-3rd-grade",  label: "3rd Grade",   group: "Dolch",    name: dolchThirdGrade.name,  grade: dolchThirdGrade.grade,  wordCount: dolchThirdGrade.wordCount,  words: dolchThirdGrade.words },
+  { key: "fry-1-100",        label: "Fry 1–100",   group: "Fry",      name: fry1100.name,          grade: fry1100.grade,          wordCount: fry1100.wordCount,          words: fry1100.words },
+  { key: "fry-101-200",      label: "Fry 101–200", group: "Fry",      name: fry101200.name,        grade: fry101200.grade,        wordCount: fry101200.wordCount,        words: fry101200.words },
+  { key: "kindergarten",     label: "Kindergarten",group: "By Grade", name: kindergarten.name,     grade: kindergarten.grade,     wordCount: kindergarten.wordCount,     words: kindergarten.words },
+  { key: "1st-grade",        label: "1st Grade",   group: "By Grade", name: gradeOne.name,         grade: gradeOne.grade,         wordCount: gradeOne.wordCount,         words: gradeOne.words },
+  { key: "2nd-grade",        label: "2nd Grade",   group: "By Grade", name: gradeTwo.name,         grade: gradeTwo.grade,         wordCount: gradeTwo.wordCount,         words: gradeTwo.words },
+];
 
 const dolchBrowseItems = [
   { name: "Pre-Primer", href: "/dolch-sight-words/pre-primer", details: `${dolchPrePrimer.wordCount} words · Pre-K` },
@@ -76,8 +92,7 @@ const faqs = [
   <div id="flashcard-tool">
     <Flashcard
       client:load
-      words={dolchPrePrimer.words}
-      listName={dolchPrePrimer.name}
+      lists={flashcardLists}
     />
   </div>
 
