@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "postinstall": "node scripts/patch-sitemap-compat.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.0",
