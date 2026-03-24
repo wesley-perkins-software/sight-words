@@ -17,11 +17,34 @@ const getPreferredVoice = () => {
   return voices.find((v) => v.lang.startsWith('en')) ?? null;
 };
 
-const speak = (word) => {
+const waitForVoices = () => new Promise((resolve) => {
+  const existingVoices = window.speechSynthesis.getVoices();
+  if (existingVoices.length > 0) {
+    resolve(existingVoices);
+    return;
+  }
+
+  const timeout = setTimeout(() => {
+    window.speechSynthesis.removeEventListener('voiceschanged', handleVoicesChanged);
+    resolve(window.speechSynthesis.getVoices());
+  }, 1000);
+
+  const handleVoicesChanged = () => {
+    clearTimeout(timeout);
+    window.speechSynthesis.removeEventListener('voiceschanged', handleVoicesChanged);
+    resolve(window.speechSynthesis.getVoices());
+  };
+
+  window.speechSynthesis.addEventListener('voiceschanged', handleVoicesChanged);
+});
+
+const speak = async (word) => {
+  await waitForVoices();
   const utterance = new SpeechSynthesisUtterance(word);
   utterance.rate = 0.8;
   const voice = getPreferredVoice();
   if (voice) utterance.voice = voice;
+  window.speechSynthesis.cancel();
   window.speechSynthesis.speak(utterance);
 };
 
@@ -39,6 +62,7 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
   const [index, setIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
+  const [isVoiceReady, setIsVoiceReady] = useState(false);
   const flashcardRef = useRef(null);
   const touchStartRef = useRef({ x: 0, y: 0 });
   const touchDeltaRef = useRef({ x: 0, y: 0 });
@@ -59,9 +83,25 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
     setIndex(0);
   }, [words]);
 
-  const handleSpeak = useCallback(() => {
-    speak(currentWord);
+  const handleSpeak = useCallback(async () => {
+    await speak(currentWord);
   }, [currentWord]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const prepareVoices = async () => {
+      await waitForVoices();
+      if (!isMounted) return;
+      setIsVoiceReady(true);
+    };
+
+    prepareVoices();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleTouchStart = useCallback((event) => {
     const touch = event.touches[0];
@@ -228,8 +268,16 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
           <button
             onClick={handleSpeak}
             aria-label={`Speak the word ${currentWord}`}
+            disabled={!isVoiceReady}
             className="flex items-center justify-center rounded-full hover:opacity-90 active:opacity-80 transition-opacity"
-            style={{ backgroundColor: '#2563EB', color: 'white', minWidth: '48px', minHeight: '48px' }}
+            style={{
+              backgroundColor: '#2563EB',
+              color: 'white',
+              minWidth: '48px',
+              minHeight: '48px',
+              opacity: isVoiceReady ? 1 : 0.65,
+              cursor: isVoiceReady ? 'pointer' : 'wait',
+            }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6" aria-hidden="true">
               <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z" />
