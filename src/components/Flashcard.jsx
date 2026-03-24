@@ -34,8 +34,8 @@ function shuffleArray(arr) {
   return shuffled;
 }
 
-export default function Flashcard({ words, listName }) {
-  const [deck, setDeck] = useState(words);
+export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
+  const [deck, setDeck] = useState(() => (shuffleOnLoad ? shuffleArray(words) : words));
   const [index, setIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
