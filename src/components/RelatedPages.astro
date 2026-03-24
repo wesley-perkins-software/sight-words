@@ -4,11 +4,12 @@ import { getRouteFromSlug, majorPageLinks } from "../utils/internalLinks";
 
 interface Props {
   currentSlug: string;
-  variant?: "chips" | "cards";
+  variant?: "chips" | "cards" | "inline";
   maxLinks?: number;
+  title?: string;
 }
 
-const { currentSlug, variant = "chips", maxLinks = 5 } = Astro.props;
+const { currentSlug, variant = "chips", maxLinks = 4, title = "Related practice" } = Astro.props;
 
 const majorPageLabelMap = new Map(majorPageLinks.map((link) => [link.slug, link.label]));
 const listLabelMap = new Map(
@@ -109,9 +110,19 @@ const pageTypeRecommendations: Record<string, string[]> = {
     "fry-sight-words",
     "1st-grade",
   ],
-  "dolch-sight-words": [],
-  "fry-sight-words": [],
-  "grade-level-sight-words": ["kindergarten", "1st-grade", "2nd-grade"],
+  "dolch-sight-words": [
+    "dolch-pre-primer",
+    "fry-sight-words",
+    "kindergarten",
+    "grade-level-sight-words",
+  ],
+  "fry-sight-words": [
+    "dolch-sight-words",
+    "fry-1-100",
+    "grade-level-sight-words",
+    "kindergarten",
+  ],
+  "grade-level-sight-words": ["kindergarten", "1st-grade", "2nd-grade", "dolch-sight-words"],
 };
 
 const fallbackRecommendations = [
@@ -140,7 +151,7 @@ const helpfulLinks = recommendationSlugs
 
 {helpfulLinks.length > 0 && variant === "chips" && (
   <section class="mt-10 pt-8 border-t border-gray-200">
-    <h2 class="text-xl font-bold text-gray-800 mb-4">Helpful Next Pages</h2>
+    <h2 class="text-xl font-bold text-gray-800 mb-4">{title}</h2>
     <ul class="flex flex-wrap gap-3">
       {helpfulLinks.map((link) => (
         <li>
@@ -169,4 +180,18 @@ const helpfulLinks = recommendationSlugs
       </li>
     ))}
   </ul>
+)}
+
+{helpfulLinks.length > 0 && variant === "inline" && (
+  <>
+    {helpfulLinks.map((link, index) => (
+      <>
+        <a href={link.href} class="text-blue-700 underline underline-offset-2 hover:text-blue-800 font-medium">
+          {link.label}
+        </a>
+        {index < helpfulLinks.length - 2 && ", "}
+        {index === helpfulLinks.length - 2 && " and "}
+      </>
+    ))}
+  </>
 )}

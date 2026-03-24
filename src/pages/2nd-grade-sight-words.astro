@@ -38,6 +38,7 @@ const faqs = [
 
   <p class="text-gray-600 leading-relaxed mb-6">
     Second grade is a turning point. Your child is building independence as a reader, and these {list.wordCount} words are the ones that will appear on nearly every page. They're more abstract than kindergarten or 1st grade words — words like "because," "would," and "which" — but mastering them automatically means your child's brain is free to focus on understanding the story, not decoding the words.
+    To support this jump, many families alternate with <RelatedPages currentSlug="2nd-grade" variant="inline" maxLinks={2} /> for both grade-based and frequency-based review.
   </p>
 
   <div id="flashcard-tool" class="no-print">
@@ -82,6 +83,6 @@ const faqs = [
   </div>
 
   <div class="no-print">
-    <RelatedPages currentSlug="2nd-grade" />
+    <RelatedPages currentSlug="2nd-grade" title="Try next" maxLinks={3} />
   </div>
 </BaseLayout>
