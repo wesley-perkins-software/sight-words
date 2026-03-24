@@ -7,9 +7,10 @@ interface Props {
   variant?: "chips" | "cards" | "inline";
   maxLinks?: number;
   title?: string;
+  slugs?: string[];
 }
 
-const { currentSlug, variant = "chips", maxLinks = 4, title = "Related practice" } = Astro.props;
+const { currentSlug, variant = "chips", maxLinks = 4, title = "Related practice", slugs } = Astro.props;
 
 const majorPageLabelMap = new Map(majorPageLinks.map((link) => [link.slug, link.label]));
 const listLabelMap = new Map(
@@ -132,7 +133,7 @@ const fallbackRecommendations = [
   "sight-words-printable",
 ];
 
-const recommendationSlugs = pageTypeRecommendations[currentSlug] ?? fallbackRecommendations;
+const recommendationSlugs = (slugs && slugs.length > 0 ? slugs : pageTypeRecommendations[currentSlug]) ?? fallbackRecommendations;
 
 const helpfulLinks = recommendationSlugs
   .filter((slug, index, array) => array.indexOf(slug) === index)
