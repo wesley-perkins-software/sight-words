@@ -34,10 +34,11 @@ function shuffleArray(arr) {
   return shuffled;
 }
 
-export default function Flashcard({ lists }) {
-  const [activeKey, setActiveKey] = useState(lists[0].key);
-  const activeList = lists.find(l => l.key === activeKey);
-  const [deck, setDeck] = useState(lists[0].words);
+export default function Flashcard({ lists, words, listName }) {
+  const resolvedLists = lists ?? [{ key: 'default', label: listName, group: null, name: listName, words }];
+  const [activeKey, setActiveKey] = useState(resolvedLists[0].key);
+  const activeList = resolvedLists.find(l => l.key === activeKey);
+  const [deck, setDeck] = useState(resolvedLists[0].words);
   const [index, setIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
@@ -63,11 +64,11 @@ export default function Flashcard({ lists }) {
 
   const handleListChange = useCallback((key) => {
     window.speechSynthesis.cancel();
-    const next = lists.find(l => l.key === key);
+    const next = resolvedLists.find(l => l.key === key);
     setActiveKey(key);
     setDeck(next.words);
     setIndex(0);
-  }, [lists]);
+  }, [resolvedLists]);
 
   const handleSpeak = useCallback(() => {
     speak(currentWord);
@@ -171,15 +172,15 @@ export default function Flashcard({ lists }) {
           : { backgroundColor: '#f0f4f8' }
       }
     >
-      {/* List selector — hidden in fullscreen */}
-      {!isFullscreen && (
+      {/* List selector — hidden in fullscreen, only shown when multiple grouped lists provided */}
+      {!isFullscreen && resolvedLists.length > 1 && (
         <div className="w-full max-w-xl mb-3">
-          {['Dolch', 'Fry', 'By Grade'].map(group => (
+          {['Dolch', 'Fry', 'By Grade'].filter(group => resolvedLists.some(l => l.group === group)).map(group => (
             <div key={group} className="flex items-center gap-2 mb-2 flex-wrap">
               <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest w-16 shrink-0">
                 {group}
               </span>
-              {lists.filter(l => l.group === group).map(l => (
+              {resolvedLists.filter(l => l.group === group).map(l => (
                 <button
                   key={l.key}
                   onClick={() => handleListChange(l.key)}
