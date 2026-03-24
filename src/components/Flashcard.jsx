@@ -34,8 +34,11 @@ function shuffleArray(arr) {
   return shuffled;
 }
 
-export default function Flashcard({ words, listName }) {
-  const [deck, setDeck] = useState(words);
+export default function Flashcard({ lists, words, listName }) {
+  const resolvedLists = lists ?? [{ key: 'default', label: listName, group: null, name: listName, words }];
+  const [activeKey, setActiveKey] = useState(resolvedLists[0].key);
+  const activeList = resolvedLists.find(l => l.key === activeKey);
+  const [deck, setDeck] = useState(resolvedLists[0].words);
   const [index, setIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
@@ -55,9 +58,17 @@ export default function Flashcard({ words, listName }) {
   }, []);
 
   const shuffle = useCallback(() => {
-    setDeck(shuffleArray(words));
+    setDeck(shuffleArray(activeList.words));
     setIndex(0);
-  }, [words]);
+  }, [activeList]);
+
+  const handleListChange = useCallback((key) => {
+    window.speechSynthesis.cancel();
+    const next = resolvedLists.find(l => l.key === key);
+    setActiveKey(key);
+    setDeck(next.words);
+    setIndex(0);
+  }, [resolvedLists]);
 
   const handleSpeak = useCallback(() => {
     speak(currentWord);
@@ -161,10 +172,37 @@ export default function Flashcard({ words, listName }) {
           : { backgroundColor: '#f0f4f8' }
       }
     >
+      {/* List selector — hidden in fullscreen, only shown when multiple grouped lists provided */}
+      {!isFullscreen && resolvedLists.length > 1 && (
+        <div className="w-full max-w-xl mb-3">
+          {['Dolch', 'Fry', 'By Grade'].filter(group => resolvedLists.some(l => l.group === group)).map(group => (
+            <div key={group} className="flex items-center gap-2 mb-2 flex-wrap">
+              <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest w-16 shrink-0">
+                {group}
+              </span>
+              {resolvedLists.filter(l => l.group === group).map(l => (
+                <button
+                  key={l.key}
+                  onClick={() => handleListChange(l.key)}
+                  aria-pressed={activeKey === l.key}
+                  className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-colors min-h-[36px] ${
+                    activeKey === l.key
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* List name — hidden in fullscreen */}
       {!isFullscreen && (
         <p className="text-xs text-gray-500 uppercase tracking-widest mb-1 font-semibold">
-          {listName}
+          {activeList.name}
         </p>
       )}
 
