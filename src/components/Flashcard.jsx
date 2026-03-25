@@ -70,19 +70,31 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
 
   const currentWord = deck[index];
   const total = deck.length;
+  const currentListName = listName;
+
+  const trackEvent = useCallback((eventName) => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', eventName, {
+        list_name: currentListName,
+      });
+    }
+  }, [currentListName]);
 
   const goNext = useCallback(() => {
+    trackEvent('flashcard_next');
     setIndex((i) => Math.min(i + 1, total - 1));
-  }, [total]);
+  }, [total, trackEvent]);
 
   const goPrev = useCallback(() => {
+    trackEvent('flashcard_prev');
     setIndex((i) => Math.max(i - 1, 0));
-  }, []);
+  }, [trackEvent]);
 
   const shuffle = useCallback(() => {
+    trackEvent('flashcard_shuffle');
     setDeck(shuffleArray(words));
     setIndex(0);
-  }, [words]);
+  }, [words, trackEvent]);
 
   useEffect(() => {
     if (!shuffleOnLoad) return;
@@ -92,8 +104,9 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
   }, [shuffleOnLoad, words]);
 
   const handleSpeak = useCallback(async () => {
+    trackEvent('flashcard_audio_play');
     await speak(currentWord);
-  }, [currentWord]);
+  }, [currentWord, trackEvent]);
 
   useEffect(() => {
     let isMounted = true;
@@ -149,6 +162,7 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
   }, [goNext, goPrev]);
 
   const enterFullscreen = useCallback(() => {
+    trackEvent('flashcard_fullscreen');
     const el = flashcardRef.current;
     if (el.requestFullscreen) {
       el.requestFullscreen();
@@ -159,9 +173,10 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
       setIsFakeFullscreen(true);
       setIsFullscreen(true);
     }
-  }, []);
+  }, [trackEvent]);
 
   const exitFullscreen = useCallback(() => {
+    trackEvent('flashcard_fullscreen');
     if (isFakeFullscreen) {
       setIsFakeFullscreen(false);
       setIsFullscreen(false);
@@ -169,7 +184,7 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
       if (document.exitFullscreen) document.exitFullscreen();
       else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
     }
-  }, [isFakeFullscreen]);
+  }, [isFakeFullscreen, trackEvent]);
 
   useEffect(() => {
     const handler = () => {
