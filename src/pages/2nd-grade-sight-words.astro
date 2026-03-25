@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Flashcard from "../components/Flashcard.jsx";
+import WordTable from "../components/WordTable.astro";
+import RelatedPages from "../components/RelatedPages.astro";
+import FAQ from "../components/FAQ.astro";
+import PrintButton from "../components/PrintButton.astro";
+import wordsData from "../data/words.json";
+
+const list = wordsData.lists["2nd-grade"];
+
+const faqs = [
+  {
+    question: "How many sight words should a 2nd grader know?",
+    answer: "By the end of 2nd grade most children are expected to recognize between 200 and 300 sight words automatically. This includes all words from kindergarten and 1st grade plus the new 2nd grade words."
+  },
+  {
+    question: "What sight words do 2nd graders learn?",
+    answer: "Second grade sight words include more abstract and multi-syllable words than earlier grades. The list includes words like always, around, because, been, before, best, both, buy, call, cold, does, don't, fast, first, five, found, gave, goes, green, its, made, many, off, or, pull, read, right, sing, sit, sleep, tell, their, these, those, upon, us, use, very, wash, which, why, wish, work, would, write, and your."
+  },
+  {
+    question: "Why are 2nd grade sight words harder?",
+    answer: "Second grade words are more abstract and often have multiple meanings depending on context. Words like 'read', 'right', and 'work' can be used in different ways in different sentences, which requires children to develop a deeper understanding of language."
+  },
+  {
+    question: "How do I help a struggling 2nd grade reader?",
+    answer: "Go back to basics — review kindergarten and 1st grade words to make sure they are truly automatic before pushing forward. Keep sessions short and positive. Use the audio feature on the flashcard tool so your child hears correct pronunciation. Reading books together daily reinforces sight word recognition in context."
+  }
+];
+---
+
+<BaseLayout
+  title="2nd Grade Sight Words List | Free Flashcards"
+  description="Free 2nd grade sight words list with interactive flashcards and audio. Help your second grader build reading fluency with these essential words."
+  canonicalUrl="https://sightwordspractice.com/2nd-grade-sight-words"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">2nd Grade Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6">
+    Second grade is a turning point. Your child is building independence as a reader, and these {list.wordCount} words are the ones that will appear on nearly every page. They're more abstract than kindergarten or 1st grade words — words like "because," "would," and "which" — but mastering them automatically means your child's brain is free to focus on understanding the story, not decoding the words.
+    To support this jump, many families alternate with <RelatedPages currentSlug="2nd-grade" variant="inline" slugs={["dolch-2nd-grade", "fry-101-200"]} maxLinks={2} /> for both grade-based and frequency-based review.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} 2nd Grade Sight Words</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for 2nd Grade Sight Words</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      At this level, your child already knows a lot of words. The goal is to keep building on that foundation without letting earlier words get rusty. Spend a few minutes each session reviewing kindergarten and 1st grade words alongside the new 2nd grade words — automaticity can fade if it isn't maintained.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Second grade words demand more from a reader because many of them have multiple meanings. "Read" can be past or present tense. "Right" can mean correct, a direction, or a privilege. Help your child understand these words in different sentences, not just on flashcards. Context matters at this stage.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Children who are building independence as readers benefit from reading aloud every day — not just being read to. When your child reads a sentence that contains a sight word they've been practicing, point it out. Connecting a flashcard word to real reading is what makes the practice stick.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      Keep practice sessions short and end on a win. If your child is frustrated, switch to words they already know well to rebuild confidence before stopping. Positive momentum matters as much as the words themselves.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="2nd-grade" title="Try next" maxLinks={3} />
+  </div>
+</BaseLayout>

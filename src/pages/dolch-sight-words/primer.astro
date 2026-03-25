@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flashcard from "../../components/Flashcard.jsx";
+import WordTable from "../../components/WordTable.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import FAQ from "../../components/FAQ.astro";
+import PrintButton from "../../components/PrintButton.astro";
+import wordsData from "../../data/words.json";
+
+const list = wordsData.lists["dolch-primer"];
+
+const faqs = [
+  {
+    question: "What is the difference between pre-primer and primer?",
+    answer: "Pre-primer is the first and simplest level, designed for pre-kindergarten children just beginning to read. Primer is the second level, intended for kindergartners who have already mastered the pre-primer words."
+  },
+  {
+    question: "How many words are in the Dolch primer list?",
+    answer: "The Dolch primer list contains 52 words, making it the largest of the five Dolch grade levels."
+  },
+  {
+    question: "Should my child know all pre-primer words before starting primer?",
+    answer: "Ideally yes — mastering the pre-primer list first gives children a strong foundation. However some overlap and review is natural, and many children learn words from multiple levels simultaneously."
+  },
+  {
+    question: "How do I practice primer words at home?",
+    answer: "Use the flashcard tool daily for short 5 to 10 minute sessions. Tap the speaker button to hear each word spoken aloud. Mix up the order using the shuffle button so your child learns to recognize words in any context, not just in sequence."
+  }
+];
+---
+
+<BaseLayout
+  title="Dolch Primer Sight Words List | Free Flashcards"
+  description="Free Dolch primer sight words list with interactive flashcards and audio. 52 essential words for kindergarten readers."
+  canonicalUrl="https://sightwordspractice.com/dolch-sight-words/primer"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch Primer Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
+    The primer list is the second Dolch level, built for kindergarten readers who have already worked through the pre-primer words. With 52 words — the largest of the five grade levels — it introduces new vocabulary that children encounter constantly in early books and classroom materials.
+    Families often reinforce this level with <RelatedPages currentSlug="dolch-primer" variant="inline" slugs={["dolch-1st-grade", "kindergarten"]} maxLinks={2} /> to connect classroom and home review.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} Primer Words</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for Primer Words</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Kindergartners learn best through repetition and routine. Practice at the same time each day — right after school or before bed — so it becomes a habit rather than a chore. A few minutes every day adds up quickly.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Mix primer words in with the pre-primer words your child already knows. Seeing familiar words alongside new ones builds confidence and keeps the practice feeling manageable.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      When your child gets stuck, say the word out loud and move on — don't drill a single word for too long. Return to tricky words in the next session. The shuffle button is great for this: it ensures every word gets equal attention over time.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-primer" title="Related practice" maxLinks={3} />
+  </div>
+</BaseLayout>

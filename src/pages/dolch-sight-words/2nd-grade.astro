@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flashcard from "../../components/Flashcard.jsx";
+import WordTable from "../../components/WordTable.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import FAQ from "../../components/FAQ.astro";
+import PrintButton from "../../components/PrintButton.astro";
+import wordsData from "../../data/words.json";
+
+const list = wordsData.lists["dolch-2nd-grade"];
+
+const faqs = [
+  {
+    question: "How many words are in the Dolch 2nd grade list?",
+    answer: "The Dolch 2nd grade list contains 46 words. A child who has mastered all Dolch levels through 2nd grade knows 179 of the most frequently used words in children's reading materials."
+  },
+  {
+    question: "Are 2nd grade Dolch words harder than 1st grade words?",
+    answer: "Yes, the 2nd grade words are generally more complex. Words like 'because', 'always', and 'different' have more syllables and abstract meanings than words in the earlier levels."
+  },
+  {
+    question: "My 2nd grader is struggling — is that normal?",
+    answer: "Absolutely. The 2nd grade list introduces longer and more abstract words that take more time to master. Daily practice with short sessions, using the audio feature to reinforce pronunciation, and lots of patience go a long way."
+  },
+  {
+    question: "Should my child read these words in books too?",
+    answer: "Yes — flashcard practice builds recognition speed, but seeing words in context reinforces meaning. Encourage your child to point out Dolch words when reading books together."
+  }
+];
+---
+
+<BaseLayout
+  title="Dolch 2nd Grade Sight Words List | Free Flashcards"
+  description="Free Dolch 2nd grade sight words list with interactive flashcards and audio. 46 words for second grade readers."
+  canonicalUrl="https://sightwordspractice.com/dolch-sight-words/2nd-grade"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch 2nd Grade Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
+    The Dolch 2nd grade list contains 46 words designed for children in their second year of school, typically ages 7 to 8. The words at this level are longer and more abstract than earlier lists, with multi-syllable words that children need to recognize automatically to keep their reading fluent.
+    If your child is ready for broader practice, weave in <RelatedPages currentSlug="dolch-2nd-grade" variant="inline" slugs={["dolch-3rd-grade", "2nd-grade"]} maxLinks={2} /> between regular sessions.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} 2nd Grade Words</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for 2nd Grade Words</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      The 2nd grade list has some tricky words. "Because," "always," and "different" are harder to memorize as shapes because they're longer. Tap the speaker icon so your child hears the correct pronunciation alongside seeing the word — both cues together speed up memorization.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Point out these words in books you read together. When a child sees "because" in a real sentence and recognizes it from the flashcard, that moment of connection reinforces the word better than any drill.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      Don't rush. It's okay if 2nd grade words take longer to master than earlier lists. The goal is automatic recognition — if your child hesitates even slightly, that word needs more practice. Keep sessions fun and pressure-free.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-2nd-grade" title="Related practice" maxLinks={3} />
+  </div>
+</BaseLayout>

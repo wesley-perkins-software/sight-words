@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flashcard from "../../components/Flashcard.jsx";
+import WordTable from "../../components/WordTable.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import FAQ from "../../components/FAQ.astro";
+import PrintButton from "../../components/PrintButton.astro";
+import wordsData from "../../data/words.json";
+
+const list = wordsData.lists["fry-1-100"];
+
+const faqs = [
+  {
+    question: "What are the first 100 Fry words?",
+    answer: "The first 100 Fry words are the most frequently occurring words in English reading materials. They include words like the, of, and, a, to, in, is, you, that, and it. Mastering these 100 words alone covers approximately half of all words a child will encounter in reading."
+  },
+  {
+    question: "How long does it take to learn the first 100 Fry words?",
+    answer: "With 5 to 10 minutes of daily practice, most children can master the first 100 Fry words within 3 to 4 months. Learning them in smaller groups of 10 to 20 words at a time is more effective than tackling all 100 at once."
+  },
+  {
+    question: "What grade level are Fry words 1–100?",
+    answer: "Fry words 1–100 are typically introduced in kindergarten and 1st grade. Because they are ranked by frequency rather than difficulty, some of the words are simple and some are more complex."
+  },
+  {
+    question: "Should I teach Fry words or Dolch words?",
+    answer: "Either list is effective. Fry words are more modern and based on a larger sample of reading materials. Dolch words are organized by grade level which some parents find easier to follow. Many of the most important words appear on both lists."
+  }
+];
+---
+
+<BaseLayout
+  title="Fry Words 1–100 | Free Sight Words Flashcards"
+  description="Free Fry words 1–100 list with interactive flashcards and audio. The first 100 Fry sight words for beginning readers."
+  canonicalUrl="https://sightwordspractice.com/fry-sight-words/1-100"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Fry Words 1–100</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6">
+    The first 100 Fry words are the most common words in the English language. They appear so frequently in print that mastering them alone unlocks roughly half of everything your child will ever read. These words are the foundation — get these right and reading fluency follows naturally.
+    To bridge grade-level goals, pair this set with <RelatedPages currentSlug="fry-1-100" variant="inline" slugs={["fry-101-200", "1st-grade"]} maxLinks={2} /> during the same week.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} Fry Words 1–100</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for Fry Words 1–100</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      These are the most common words in the English language — not because someone decided they should be, but because research shows they appear in roughly half of all written text. Every minute your child spends on these words pays off immediately in real reading situations.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Practice in small groups of 10 to 20 words at a time. Introduce new words only once your child can recognize the current group automatically — without pausing or sounding out. Speed matters here. The goal is instant recognition, not careful decoding.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      Use the shuffle button to break up the order. Children often memorize the sequence rather than the words themselves. Mixing them up forces true recognition and builds the automaticity that leads to fluent reading.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="fry-1-100" title="Try next" maxLinks={3} />
+  </div>
+</BaseLayout>

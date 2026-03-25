@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flashcard from "../../components/Flashcard.jsx";
+import WordTable from "../../components/WordTable.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import FAQ from "../../components/FAQ.astro";
+import PrintButton from "../../components/PrintButton.astro";
+import wordsData from "../../data/words.json";
+
+const list = wordsData.lists["fry-101-200"];
+
+const faqs = [
+  {
+    question: "How are Fry words 101–200 different from the first 100?",
+    answer: "Words 101–200 are slightly less common than the first 100 but still appear frequently in reading materials. They include words like over, new, sound, take, only, and little. At this level words begin to have more varied meanings depending on context."
+  },
+  {
+    question: "Should my child master words 1–100 before starting 101–200?",
+    answer: "Yes — mastering the first 100 words first gives your child the strongest possible foundation. Once they can recognize the first 100 words automatically without hesitation, they are ready to move on to words 101–200."
+  },
+  {
+    question: "What grade level are Fry words 101–200?",
+    answer: "Fry words 101–200 are typically covered in 1st and 2nd grade. Children who have mastered the first 200 Fry words have a strong reading foundation for early elementary school."
+  },
+  {
+    question: "How many Fry words are there total?",
+    answer: "There are 1000 Fry words in total, organized into ten groups of 100. The first 300 words cover approximately 65 percent of all words found in written English."
+  }
+];
+---
+
+<BaseLayout
+  title="Fry Words 101–200 | Free Sight Words Flashcards"
+  description="Free Fry words 101–200 list with interactive flashcards and audio. Build on the first 100 Fry words with this essential second set."
+  canonicalUrl="https://sightwordspractice.com/fry-sight-words/101-200"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Fry Words 101–200</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6">
+    Fry words 101–200 pick up where the first 100 leave off. Words at this level appear slightly less frequently, but they still show up constantly in everyday reading — and the vocabulary begins to grow more varied and context-dependent. Children who have mastered the first 100 words are ready to take on this next set.
+    Many families keep retention strong by mixing this level with <RelatedPages currentSlug="fry-101-200" variant="inline" slugs={["fry-1-100", "2nd-grade"]} maxLinks={2} /> across the same practice cycle.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} Fry Words 101–200</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for Fry Words 101–200</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Before starting this set, make sure your child has a solid grip on words 1–100. These new words build directly on that foundation. If the first 100 aren't automatic yet, more practice there will pay off more than pushing ahead.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Words at this level are more complex — many have multiple meanings depending on context. Words like "sound," "place," and "kind" mean different things in different sentences. When your child encounters these words in books, point them out and talk about what they mean in that moment.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      Keep mixing words from both sets during practice sessions. Reviewing words 1–100 alongside the new 101–200 words reinforces retention and gives your child a sense of how much they already know.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="fry-101-200" title="Related practice" maxLinks={3} />
+  </div>
+</BaseLayout>

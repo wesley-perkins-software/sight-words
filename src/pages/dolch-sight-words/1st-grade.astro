@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flashcard from "../../components/Flashcard.jsx";
+import WordTable from "../../components/WordTable.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import FAQ from "../../components/FAQ.astro";
+import PrintButton from "../../components/PrintButton.astro";
+import wordsData from "../../data/words.json";
+
+const list = wordsData.lists["dolch-1st-grade"];
+
+const faqs = [
+  {
+    question: "How many words are in the Dolch 1st grade list?",
+    answer: "The Dolch 1st grade list contains 41 words. Combined with the pre-primer and primer lists, a child who knows all three levels has mastered 133 of the most common words in the English language."
+  },
+  {
+    question: "What reading level corresponds to the 1st grade Dolch list?",
+    answer: "The 1st grade Dolch list is designed for children in their first year of formal schooling, typically ages 6 to 7. Mastery of this list supports fluent reading of simple books and early readers."
+  },
+  {
+    question: "How are 1st grade Dolch words different from pre-primer and primer words?",
+    answer: "The 1st grade words tend to be slightly more complex and less concrete than the earlier levels. Words like 'could', 'every', and 'going' require more reading experience to recognize automatically."
+  },
+  {
+    question: "How long should we practice each day?",
+    answer: "Five to ten minutes of daily flashcard practice is ideal for first graders. Short, consistent sessions are more effective than occasional long ones. Try practicing right after school or before bedtime as part of a routine."
+  }
+];
+---
+
+<BaseLayout
+  title="Dolch 1st Grade Sight Words List | Free Flashcards"
+  description="Free Dolch 1st grade sight words list with interactive flashcards and audio. 41 words for first grade readers."
+  canonicalUrl="https://sightwordspractice.com/dolch-sight-words/1st-grade"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch 1st Grade Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
+    The Dolch 1st grade list contains 41 words for children in their first year of formal school, typically ages 6 to 7. These words are a step up from the primer list — slightly more complex and abstract — but mastering them puts a child well on their way to fluent independent reading.
+    To keep growth steady, many parents rotate this set with <RelatedPages currentSlug="dolch-1st-grade" variant="inline" slugs={["dolch-2nd-grade", "1st-grade"]} maxLinks={2} /> during weekly review.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} 1st Grade Words</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for 1st Grade Words</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      First graders are reading real books now, which means you can reinforce flashcard practice by pointing out 1st grade Dolch words as they appear in whatever your child is reading. Seeing a word in context right after seeing it on a card cements recognition fast.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Some words on this list are harder to picture — words like "could," "every," and "going" don't have a simple image attached to them. Use them in sentences your child will recognize: "We could go to the park." Connecting abstract words to real situations makes them stick.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      Keep the flashcard sessions short and end on a positive note. Even if your child struggles, make sure the last word in the session is one they know well. Ending with a win keeps them coming back.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-1st-grade" title="Try next" maxLinks={3} />
+  </div>
+</BaseLayout>

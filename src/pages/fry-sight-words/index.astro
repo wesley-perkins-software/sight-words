@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flashcard from "../../components/Flashcard.jsx";
+import RelatedPages from "../../components/RelatedPages.astro";
+import FAQ from "../../components/FAQ.astro";
+import wordsData from "../../data/words.json";
+
+const fry1100 = wordsData.lists["fry-1-100"];
+const fry101200 = wordsData.lists["fry-101-200"];
+
+const fryLevels = [
+  { name: "Fry Words 1–100", href: "/fry-sight-words/1-100", wordCount: fry1100.wordCount, grade: "Kindergarten / 1st Grade" },
+  { name: "Fry Words 101–200", href: "/fry-sight-words/101-200", wordCount: fry101200.wordCount, grade: "1st / 2nd Grade" },
+];
+
+const faqs = [
+  {
+    question: "What are Fry sight words?",
+    answer: "Fry sight words are a list of 1000 high-frequency words compiled by educator Edward Fry in the 1950s and updated in the 1980s. They are ranked by how frequently they appear in reading materials, making them a practical foundation for early literacy."
+  },
+  {
+    question: "What is the difference between Fry and Dolch words?",
+    answer: "Dolch words are an older list of 220 words organized by grade level. Fry words are a more modern and larger list of 1000 words organized by frequency. Many words appear on both lists. Most educators today use Fry words as the primary reference."
+  },
+  {
+    question: "How many Fry words should my child know?",
+    answer: "The first 100 Fry words make up about 50 percent of all words found in reading materials. Mastering the first 300 Fry words covers approximately 65 percent of written English. Start with words 1 through 100 and build from there."
+  },
+  {
+    question: "Are Fry words used in schools?",
+    answer: "Yes, Fry words are widely used in elementary schools across the United States. Many reading programs and curricula use Fry words as their primary high-frequency word list because of how they are ranked by actual frequency of use."
+  }
+];
+---
+
+<BaseLayout
+  title="Fry Sight Words — Complete List by Grade Level"
+  description="Free Fry sight words lists for every level. Includes interactive flashcards and printable lists for the first 200 Fry words."
+  canonicalUrl="https://sightwordspractice.com/fry-sight-words"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Fry Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Fry sight words are 1000 high-frequency words ranked by how often they appear in reading materials. Developed by educator Edward Fry, they are one of the most widely used word lists in elementary education. The first 100 words alone account for about half of everything your child will read — making them the single most valuable place to start.
+    If you want a grade-based companion, pair this list with <RelatedPages currentSlug="fry-sight-words" variant="inline" slugs={["fry-1-100", "kindergarten"]} maxLinks={2} /> so practice stays balanced.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={fry1100.words}
+      listName={fry1100.name}
+    />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Browse by Level</h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {fryLevels.map((level) => (
+        <li>
+          <a
+            href={level.href}
+            class="block px-6 py-4 rounded-xl bg-blue-50 text-blue-700 font-semibold hover:bg-blue-100 transition-colors"
+          >
+            <span class="block text-lg">{level.name}</span>
+            <span class="block text-sm font-normal text-blue-500 mt-1">{level.wordCount} words · {level.grade}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-3">How the Fry List Is Organized</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Unlike the Dolch list which is organized by grade level, Fry words are ranked purely by frequency — the most common word in English comes first. Some resources teach Fry words in grouped sets, but on this site we keep them in ranked order so families can practice from most common to less common. This makes the list especially practical: the earlier the word on the list, the more often your child will encounter it in books and writing. Working through the list in order delivers the greatest reading gains in the shortest time.
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-800 mb-2">Why Fry Sight Words Matter</h3>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Fry sight words are high-frequency words, which means they are the words children see again and again in real reading. When kids quickly recognize these common words, they can spend less energy sounding out every line and more energy understanding the story. That is a big part of building reading fluency. In practical terms, learning the most frequent words first gives many children faster early wins and more confidence during reading practice at home.
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-800 mb-2">How to Work Through Fry Levels</h3>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Start with Fry Words 1–100 and practice until your child can read each word instantly, without stopping to decode. Short daily practice sessions usually work better than occasional long sessions. Once the first 100 feel automatic, move into Fry Words 101–200 and continue the same routine. Some children move quickly, while others need more review, and both are completely normal. The goal is steady progress and confident recognition, not racing through levels on a strict schedule.
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-800 mb-2">Fry vs Dolch Sight Words</h3>
+    <p class="text-gray-600 leading-relaxed">
+      Parents often ask about fry vs dolch lists. Both are useful tools. Fry sight words are a larger list of 1000 words ranked by frequency, while Dolch is a smaller list of 220 words grouped by grade level. Many families use both: Dolch for simple grade-based review and Fry for a broader high-frequency roadmap as reading skills grow.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="fry-sight-words" title="Related practice" maxLinks={3} />
+  </div>
+</BaseLayout>

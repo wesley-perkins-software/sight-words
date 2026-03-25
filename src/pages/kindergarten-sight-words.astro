@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Flashcard from "../components/Flashcard.jsx";
+import WordTable from "../components/WordTable.astro";
+import RelatedPages from "../components/RelatedPages.astro";
+import FAQ from "../components/FAQ.astro";
+import PrintButton from "../components/PrintButton.astro";
+import wordsData from "../data/words.json";
+
+const list = wordsData.lists["kindergarten"];
+
+const faqs = [
+  {
+    question: "How many sight words should a kindergartner know?",
+    answer: "Most kindergartners are expected to know between 20 and 50 sight words by the end of the school year. Every child learns at their own pace — consistent daily practice of just 5 to 10 minutes makes a significant difference over the course of a school year."
+  },
+  {
+    question: "What sight words do kindergartners learn?",
+    answer: "Kindergarten sight words typically include the Dolch primer list and the beginning Fry words. Common kindergarten words include: all, am, are, at, be, black, brown, but, came, did, do, eat, four, get, good, have, he, into, like, must, new, no, now, on, our, out, please, ran, ride, saw, say, she, so, soon, that, there, they, this, too, under, want, was, well, went, what, white, who, will, with, and yes."
+  },
+  {
+    question: "How do I teach sight words to a kindergartner?",
+    answer: "Keep sessions short — 5 to 10 minutes maximum. Use flashcards with the audio feature so your child hears the word as they see it. Practice a small group of 5 to 10 words at a time and only introduce new words when the current group is mastered. Make it a game rather than a test."
+  },
+  {
+    question: "What if my kindergartner is struggling with sight words?",
+    answer: "Struggling is completely normal. Go back to a smaller set of words and build confidence before expanding. Use the shuffle feature to mix up the order. Reading books together that contain the words in context helps reinforce recognition beyond flashcard practice."
+  }
+];
+---
+
+<BaseLayout
+  title="Kindergarten Sight Words List | Free Flashcards"
+  description="Free kindergarten sight words list with interactive flashcards and audio. Essential words for kindergarten readers with printable list."
+  canonicalUrl="https://sightwordspractice.com/kindergarten-sight-words"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Kindergarten Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6">
+    These {list.wordCount} kindergarten sight words give 5 and 6 year olds a strong start in reading. They appear constantly in early books and classroom materials — and recognizing them on sight, without sounding out, is what separates a struggling reader from a confident one. Short daily practice makes all the difference.
+    If you want list-to-list alignment, combine this page with <RelatedPages currentSlug="kindergarten" variant="inline" slugs={["1st-grade", "dolch-primer"]} maxLinks={2} /> to match school routines.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} Kindergarten Sight Words</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for Kindergarten Sight Words</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Five and six year olds learn best when practice feels like play. Keep sessions to 5 to 10 minutes — short enough that your child finishes wanting more rather than dreading it. Celebrate every word they get right, and move on quickly when they get one wrong. The goal is confidence, not perfection.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Start with just 5 words at a time. When those are solid, add 5 more. This slow build feels slower but actually works faster — children retain words they've truly mastered rather than half-learning a large pile all at once.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      Use the audio button so your child hears each word spoken clearly. Young children are still connecting what things sound like with how they look. Hearing and seeing together reinforces the connection faster than either alone.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="kindergarten" title="Continue learning" maxLinks={3} />
+  </div>
+</BaseLayout>

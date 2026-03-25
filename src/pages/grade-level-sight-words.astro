@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Flashcard from "../components/Flashcard.jsx";
+import RelatedPages from "../components/RelatedPages.astro";
+import FAQ from "../components/FAQ.astro";
+import wordsData from "../data/words.json";
+
+const kindergarten = wordsData.lists["kindergarten"];
+const faqs = [
+  {
+    question: "Are grade-level sight word lists official standards everywhere?",
+    answer:
+      "Not always. Many schools and teachers introduce sight words by grade level because it is a practical way to organize instruction, but exact lists can vary by district, curriculum, and teacher.",
+  },
+  {
+    question: "Which grade level should I start with at home?",
+    answer:
+      "A practical starting point is your child's current grade. If practice feels frustrating, move one level lower to rebuild confidence, then return to the current grade list after a few successful sessions.",
+  },
+  {
+    question: "Can I mix words from different grade levels?",
+    answer:
+      "Yes. Children progress at different rates, so it is normal to blend review words from one level with new words from the next. A mix of familiar and new words often keeps practice productive and encouraging.",
+  },
+  {
+    question: "How long should grade-level sight word practice take?",
+    answer:
+      "For most families, 5 to 10 minutes of focused daily practice is enough. Short, consistent sessions usually build stronger recall than occasional long sessions.",
+  },
+];
+---
+
+<BaseLayout
+  title="Grade Level Sight Words | By Grade Hub"
+  description="Find common sight words by grade level with quick links for kindergarten, 1st grade, and 2nd grade practice."
+  canonicalUrl="https://sightwordspractice.com/grade-level-sight-words"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Grade Level Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Many parents and teachers look for sight words by grade level because it is an easy way to choose a starting point and create a simple daily routine. In many classrooms, children are introduced to common sight words for this grade as they build reading fluency. That said, children progress at different rates, so grade-level lists are best used as a practical guide, not a strict rulebook. If you're not sure where to start, you're not alone—many families begin with one level and adjust as confidence grows.
+    For cross-checking by word system, you can compare progress with <RelatedPages currentSlug="grade-level-sight-words" variant="inline" slugs={["kindergarten", "1st-grade"]} maxLinks={2} /> as your child advances.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={kindergarten.words}
+      listName={kindergarten.name}
+    />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Browse by Grade Level</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Start with the level that best matches your child today, then adjust as needed. Use these pages for focused practice on kindergarten, 1st grade, and 2nd grade sight words. These grade-level lists are often organized around familiar Dolch and Fry sight word groups.
+    </p>
+    <RelatedPages currentSlug="grade-level-sight-words" variant="cards" maxLinks={3} />
+  </section>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">How to Choose the Right Grade Level</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      A simple approach is to begin with your child&apos;s current grade list and watch how quickly words become automatic. If your child can read most words instantly, move up. If many words feel difficult, step down one level for a week or two to build momentum.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      In real classrooms, many schools and teachers introduce sight words by grade level, but there is no single universal list used everywhere. Treat grade levels as checkpoints. The best level is the one where your child can practice with confidence and still experience steady challenge.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="grade-level-sight-words" title="Try next" maxLinks={3} />
+  </div>
+</BaseLayout>

@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flashcard from "../../components/Flashcard.jsx";
+import WordTable from "../../components/WordTable.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import FAQ from "../../components/FAQ.astro";
+import PrintButton from "../../components/PrintButton.astro";
+import wordsData from "../../data/words.json";
+
+const list = wordsData.lists["dolch-pre-primer"];
+
+const faqs = [
+  {
+    question: "What are the Dolch pre-primer words?",
+    answer: "The Dolch pre-primer list contains 40 words: a, and, away, big, blue, can, come, down, find, for, funny, go, help, here, I, in, is, it, jump, little, look, make, me, my, not, one, play, red, run, said, see, the, three, to, two, up, we, where, yellow, and you."
+  },
+  {
+    question: "How long does it take to learn pre-primer words?",
+    answer: "With 5 to 10 minutes of daily practice, most children can learn all 40 pre-primer words within 2 to 3 months. Consistency matters more than the length of each session."
+  },
+  {
+    question: "What age is the pre-primer list for?",
+    answer: "The pre-primer list is designed for pre-kindergarten children, typically ages 4 to 5. However it is also a great starting point for any early reader who is just beginning to recognize words."
+  },
+  {
+    question: "Should I teach all 40 words at once?",
+    answer: "No — start with a small set of 5 to 10 words and add more as your child masters each group. Using the shuffle feature on the flashcard tool helps mix up the order so children learn the words rather than memorizing a sequence."
+  }
+];
+---
+
+<BaseLayout
+  title="Dolch Pre-Primer Sight Words List | Free Flashcards"
+  description="Free Dolch pre-primer sight words list with interactive flashcards and audio. 40 essential words for pre-K readers."
+  canonicalUrl="https://sightwordspractice.com/dolch-sight-words/pre-primer"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch Pre-Primer Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
+    The pre-primer list is the starting point for early readers — 40 of the most common words in children's books, designed for pre-kindergarten children ages 4 to 5. Mastering these words gives young readers a solid foundation before moving on to the primer list.
+    A helpful next blend is <RelatedPages currentSlug="dolch-pre-primer" variant="inline" slugs={["dolch-primer", "kindergarten"]} maxLinks={2} /> once these words feel automatic.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} Pre-Primer Words</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for Pre-Primer Words</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Keep sessions short and playful. Five minutes of focused practice is more effective than a 30-minute session with a restless four-year-old. Hold the flashcard up so your child has to look at you — this makes it feel less like work.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Start with just five words at a time. Once your child can name them instantly without hesitation, swap one out and add a new one. This keeps the deck fresh without overwhelming them.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      Use the speaker button to let your child hear each word spoken clearly. For kids who aren't reading yet, hearing and seeing the word together builds the connection between the printed word and its sound.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-pre-primer" title="Continue learning" maxLinks={3} />
+  </div>
+</BaseLayout>

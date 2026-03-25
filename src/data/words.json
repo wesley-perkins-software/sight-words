@@ -1,0 +1,173 @@
+{
+  "lists": {
+    "dolch-pre-primer": {
+      "name": "Dolch Pre-Primer",
+      "grade": "Pre-K",
+      "slug": "dolch-pre-primer",
+      "url": "/dolch-sight-words/pre-primer",
+      "wordCount": 40,
+      "description": "The Dolch Pre-Primer list contains 40 of the most common sight words for pre-kindergarten readers.",
+      "words": [
+        "a", "and", "away", "big", "blue", "can", "come", "down",
+        "find", "for", "funny", "go", "help", "here", "I", "in",
+        "is", "it", "jump", "little", "look", "make", "me", "my",
+        "not", "one", "play", "red", "run", "said", "see", "the",
+        "three", "to", "two", "up", "we", "where", "yellow", "you"
+      ]
+    },
+    "dolch-primer": {
+      "name": "Dolch Primer",
+      "grade": "Kindergarten",
+      "slug": "dolch-primer",
+      "url": "/dolch-sight-words/primer",
+      "wordCount": 52,
+      "description": "The Dolch Primer list contains 52 sight words for kindergarten readers.",
+      "words": [
+        "all", "am", "are", "at", "ate", "be", "black", "brown",
+        "but", "came", "did", "do", "eat", "four", "get", "good",
+        "have", "he", "into", "like", "must", "new", "no", "now",
+        "on", "our", "out", "please", "pretty", "ran", "ride", "saw",
+        "say", "she", "so", "soon", "that", "there", "they", "this",
+        "too", "under", "want", "was", "well", "went", "what", "white",
+        "who", "will", "with", "yes"
+      ]
+    },
+    "dolch-1st-grade": {
+      "name": "Dolch 1st Grade",
+      "grade": "1st Grade",
+      "slug": "dolch-1st-grade",
+      "url": "/dolch-sight-words/1st-grade",
+      "wordCount": 41,
+      "description": "The Dolch 1st Grade list contains 41 sight words for first grade readers.",
+      "words": [
+        "after", "again", "an", "any", "as", "ask", "by", "could",
+        "every", "fly", "from", "give", "going", "had", "has", "her",
+        "him", "his", "how", "just", "know", "let", "live", "may",
+        "of", "old", "once", "open", "over", "put", "round", "some",
+        "stop", "take", "thank", "them", "then", "think", "walk", "were",
+        "when"
+      ]
+    },
+    "dolch-2nd-grade": {
+      "name": "Dolch 2nd Grade",
+      "grade": "2nd Grade",
+      "slug": "dolch-2nd-grade",
+      "url": "/dolch-sight-words/2nd-grade",
+      "wordCount": 46,
+      "description": "The Dolch 2nd Grade list contains 46 sight words for second grade readers.",
+      "words": [
+        "always", "around", "because", "been", "before", "best", "both",
+        "buy", "call", "cold", "does", "don't", "fast", "first", "five",
+        "found", "gave", "goes", "green", "its", "made", "many", "off",
+        "or", "pull", "read", "right", "sing", "sit", "sleep", "tell",
+        "their", "these", "those", "upon", "us", "use", "very", "wash",
+        "which", "why", "wish", "work", "would", "write", "your"
+      ]
+    },
+    "dolch-3rd-grade": {
+      "name": "Dolch 3rd Grade",
+      "grade": "3rd Grade",
+      "slug": "dolch-3rd-grade",
+      "url": "/dolch-sight-words/3rd-grade",
+      "wordCount": 41,
+      "description": "The Dolch 3rd Grade list contains 41 sight words for third grade readers.",
+      "words": [
+        "about", "better", "bring", "carry", "clean", "cut", "done",
+        "draw", "drink", "eight", "fall", "far", "full", "got", "grow",
+        "hold", "hot", "hurt", "if", "keep", "kind", "laugh", "light",
+        "long", "much", "myself", "never", "only", "own", "pick",
+        "seven", "shall", "show", "six", "small", "start", "ten",
+        "today", "together", "try", "warm"
+      ]
+    },
+    "fry-1-100": {
+      "name": "Fry Words 1\u2013100",
+      "grade": "1st Grade",
+      "slug": "fry-1-100",
+      "url": "/fry-1-100",
+      "wordCount": 100,
+      "description": "The first 100 Fry sight words are the most frequently appearing words in reading and writing.",
+      "words": [
+        "the", "of", "and", "a", "to", "in", "is", "you", "that", "it",
+        "he", "was", "for", "on", "are", "as", "with", "his", "they", "I",
+        "at", "be", "this", "have", "from", "or", "one", "had", "by", "word",
+        "but", "not", "what", "all", "were", "we", "when", "your", "can", "said",
+        "there", "use", "an", "each", "which", "she", "do", "how", "their", "if",
+        "will", "up", "other", "about", "out", "many", "then", "them", "these", "so",
+        "some", "her", "would", "make", "like", "him", "into", "time", "has", "look",
+        "two", "more", "write", "go", "see", "number", "no", "way", "could", "people",
+        "my", "than", "first", "water", "been", "call", "who", "oil", "its", "now",
+        "find", "long", "down", "day", "did", "get", "come", "made", "may", "part"
+      ]
+    },
+    "fry-101-200": {
+      "name": "Fry Words 101\u2013200",
+      "grade": "2nd Grade",
+      "slug": "fry-101-200",
+      "url": "/fry-101-200",
+      "wordCount": 100,
+      "description": "Fry words 101\u2013200 build on the first 100 and are essential for 2nd grade reading fluency.",
+      "words": [
+        "over", "new", "sound", "take", "only", "little", "work", "know", "place", "year",
+        "live", "me", "back", "give", "most", "very", "after", "thing", "our", "just",
+        "name", "good", "sentence", "man", "think", "say", "great", "where", "help", "through",
+        "much", "before", "line", "right", "too", "mean", "old", "any", "same", "tell",
+        "boy", "follow", "came", "want", "show", "also", "around", "form", "three", "small",
+        "set", "put", "end", "does", "another", "well", "large", "must", "big", "even",
+        "such", "because", "turn", "here", "why", "ask", "went", "men", "read", "need",
+        "land", "different", "home", "us", "move", "try", "kind", "hand", "picture", "again",
+        "change", "off", "play", "spell", "air", "away", "animal", "house", "point", "page",
+        "letter", "mother", "answer", "found", "study", "still", "learn", "should", "America", "world"
+      ]
+    },
+    "kindergarten": {
+      "name": "Kindergarten Sight Words",
+      "grade": "Kindergarten",
+      "slug": "kindergarten",
+      "url": "/kindergarten-sight-words",
+      "wordCount": 52,
+      "description": "Essential sight words for kindergarten students to master before entering first grade.",
+      "words": [
+        "all", "am", "are", "at", "ate", "be", "black", "brown",
+        "but", "came", "did", "do", "eat", "four", "get", "good",
+        "have", "he", "into", "like", "must", "new", "no", "now",
+        "on", "our", "out", "please", "pretty", "ran", "ride", "saw",
+        "say", "she", "so", "soon", "that", "there", "they", "this",
+        "too", "under", "want", "was", "well", "went", "what", "white",
+        "who", "will", "with", "yes"
+      ]
+    },
+    "1st-grade": {
+      "name": "1st Grade Sight Words",
+      "grade": "1st Grade",
+      "slug": "1st-grade",
+      "url": "/1st-grade-sight-words",
+      "wordCount": 41,
+      "description": "Sight words for first graders to build reading fluency and confidence.",
+      "words": [
+        "after", "again", "an", "any", "as", "ask", "by", "could",
+        "every", "fly", "from", "give", "going", "had", "has", "her",
+        "him", "his", "how", "just", "know", "let", "live", "may",
+        "of", "old", "once", "open", "over", "put", "round", "some",
+        "stop", "take", "thank", "them", "then", "think", "walk", "were",
+        "when"
+      ]
+    },
+    "2nd-grade": {
+      "name": "2nd Grade Sight Words",
+      "grade": "2nd Grade",
+      "slug": "2nd-grade",
+      "url": "/2nd-grade-sight-words",
+      "wordCount": 46,
+      "description": "Second grade sight words to support growing reading independence.",
+      "words": [
+        "always", "around", "because", "been", "before", "best", "both",
+        "buy", "call", "cold", "does", "don't", "fast", "first", "five",
+        "found", "gave", "goes", "green", "its", "made", "many", "off",
+        "or", "pull", "read", "right", "sing", "sit", "sleep", "tell",
+        "their", "these", "those", "upon", "us", "use", "very", "wash",
+        "which", "why", "wish", "work", "would", "write", "your"
+      ]
+    }
+  }
+}

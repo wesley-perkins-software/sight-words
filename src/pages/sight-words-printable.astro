@@ -1,0 +1,124 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FAQ from "../components/FAQ.astro";
+import RelatedPages from "../components/RelatedPages.astro";
+
+const faqs = [
+  {
+    question: "Are these printables really free?",
+    answer: "Yes — every word list on this site is completely free to print with no sign-up, no account, and no payment required. Just navigate to any list page and tap the Print this list button."
+  },
+  {
+    question: "What does the printed list look like?",
+    answer: "The printed list shows the page title and the words organized in a clean three-column layout at a large font size. Navigation, ads, and other page elements are hidden automatically so you get a clean, teacher-friendly printout."
+  },
+  {
+    question: "Can I print these for my classroom?",
+    answer: "Absolutely. These lists are free to print for personal and classroom use. Many teachers print a set for each student or laminate them for repeated use."
+  },
+  {
+    question: "What paper size should I use?",
+    answer: "The lists are formatted for standard US Letter size paper (8.5 x 11 inches) in portrait orientation. This is the default setting on most home and school printers."
+  }
+];
+---
+
+<BaseLayout
+  title="Sight Words Printable Lists — Free Printables for Every Grade"
+  description="Free printable sight word lists for every grade level. Print Dolch and Fry word lists instantly with no sign-up required."
+  canonicalUrl="https://sightwordspractice.com/sight-words-printable"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Printable Sight Word Lists</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-8">
+    Every word list on this site is free to print — no sign-up and no account needed. To print, choose a list below, open that list page, and tap <strong>Print this list</strong>. Your browser will then open a clean, print-ready version of that list so you can print without extra page clutter.
+  </p>
+
+  <ol class="list-decimal pl-6 text-gray-700 space-y-2 mb-8">
+    <li>Choose the sight word list you want below.</li>
+    <li>Open the list page.</li>
+    <li>Tap <strong>Print this list</strong>.</li>
+    <li>Your browser opens a clean print view, ready to print.</li>
+  </ol>
+
+  <section class="mt-8">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Dolch Printable Lists</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      The Dolch sight word list is organized by grade level, from pre-kindergarten through 3rd grade. Each level builds on the previous one.
+    </p>
+    <ul class="space-y-3">
+      <li>
+        <a href="/dolch-sight-words/pre-primer" class="text-blue-700 font-semibold hover:underline">Dolch Pre-Primer Sight Words</a>
+        <span class="text-gray-600 text-sm ml-2">— 40 words for pre-kindergarten readers</span>
+      </li>
+      <li>
+        <a href="/dolch-sight-words/primer" class="text-blue-700 font-semibold hover:underline">Dolch Primer Sight Words</a>
+        <span class="text-gray-600 text-sm ml-2">— 52 words for kindergarten readers</span>
+      </li>
+      <li>
+        <a href="/dolch-sight-words/1st-grade" class="text-blue-700 font-semibold hover:underline">Dolch 1st Grade Sight Words</a>
+        <span class="text-gray-600 text-sm ml-2">— 41 words for first graders</span>
+      </li>
+      <li>
+        <a href="/dolch-sight-words/2nd-grade" class="text-blue-700 font-semibold hover:underline">Dolch 2nd Grade Sight Words</a>
+        <span class="text-gray-600 text-sm ml-2">— 46 words for second graders</span>
+      </li>
+      <li>
+        <a href="/dolch-sight-words/3rd-grade" class="text-blue-700 font-semibold hover:underline">Dolch 3rd Grade Sight Words</a>
+        <span class="text-gray-600 text-sm ml-2">— 41 words for third graders</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Fry Printable Lists</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      The Fry word list ranks 1,000 words by how frequently they appear in reading materials. The first 300 words cover roughly 65 percent of all words your child will encounter in books.
+    </p>
+    <ul class="space-y-3">
+      <li>
+        <a href="/fry-sight-words/1-100" class="text-blue-700 font-semibold hover:underline">Fry Words 1–100</a>
+        <span class="text-gray-600 text-sm ml-2">— the 100 most common words in written English</span>
+      </li>
+      <li>
+        <a href="/fry-sight-words/101-200" class="text-blue-700 font-semibold hover:underline">Fry Words 101–200</a>
+        <span class="text-gray-600 text-sm ml-2">— words 101 through 200 by frequency</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">Grade Level Printable Lists</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Not sure where to start? Pick the grade that matches your child's current school year, then use the <strong>Print this list</strong> button on that page.
+    </p>
+    <ul class="space-y-3">
+      <li>
+        <a href="/kindergarten-sight-words" class="text-blue-700 font-semibold hover:underline">Kindergarten Sight Words</a>
+        <span class="text-gray-600 text-sm ml-2">— essential words for kindergartners</span>
+      </li>
+      <li>
+        <a href="/1st-grade-sight-words" class="text-blue-700 font-semibold hover:underline">1st Grade Sight Words</a>
+        <span class="text-gray-600 text-sm ml-2">— words for first graders building fluency</span>
+      </li>
+      <li>
+        <a href="/2nd-grade-sight-words" class="text-blue-700 font-semibold hover:underline">2nd Grade Sight Words</a>
+        <span class="text-gray-600 text-sm ml-2">— more complex words for independent readers</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">How the Print Feature Works</h2>
+    <p class="text-gray-600 leading-relaxed mb-3">
+      We keep one main page for each word list. When you open a list and tap <strong>Print this list</strong>, your browser opens a printer-friendly view of that same page. Navigation, buttons, and extra page elements are hidden automatically.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      The printed output shows the list title at the top and the words arranged in a clean multi-column layout at a large, easy-to-read font size. It's designed to work well as a take-home sheet, a classroom handout, or a laminated reference card.
+    </p>
+  </section>
+
+  <FAQ faqs={faqs} />
+
+  <RelatedPages currentSlug="sight-words-printable" />
+</BaseLayout>

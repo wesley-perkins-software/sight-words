@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Flashcard from "../../components/Flashcard.jsx";
+import WordTable from "../../components/WordTable.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import FAQ from "../../components/FAQ.astro";
+import PrintButton from "../../components/PrintButton.astro";
+import wordsData from "../../data/words.json";
+
+const list = wordsData.lists["dolch-3rd-grade"];
+
+const faqs = [
+  {
+    question: "How many words are in the Dolch 3rd grade list?",
+    answer: "The Dolch 3rd grade list contains 41 words. A child who completes all five Dolch levels has mastered all 220 Dolch sight words."
+  },
+  {
+    question: "Is the 3rd grade list the last Dolch level?",
+    answer: "Yes, 3rd grade is the final level of the Dolch sight word list. After completing all five levels a child has a strong foundation for independent reading."
+  },
+  {
+    question: "What comes after the Dolch list?",
+    answer: "After completing the Dolch list many teachers move on to the Fry sight words, which is a larger and more modern list of 1000 high-frequency words. Our Fry words flashcards are a natural next step."
+  },
+  {
+    question: "How do I know when my child has mastered a word?",
+    answer: "A word is mastered when your child can recognize it instantly without hesitation — in under one second. If they need to pause and sound it out, it needs more practice. Aim for automatic recognition across multiple sessions before moving on."
+  }
+];
+---
+
+<BaseLayout
+  title="Dolch 3rd Grade Sight Words List | Free Flashcards"
+  description="Free Dolch 3rd grade sight words list with interactive flashcards and audio. 41 words for third grade readers."
+  canonicalUrl="https://sightwordspractice.com/dolch-sight-words/3rd-grade"
+>
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Dolch 3rd Grade Sight Words</h1>
+
+  <p class="text-gray-600 leading-relaxed mb-6 no-print">
+    The Dolch 3rd grade list is the final level — 41 words that complete the full set of 220 Dolch sight words. Children who master this list have a powerful reading foundation and are well prepared for independent reading at a 3rd grade level and beyond.
+    After this milestone, a natural progression is <RelatedPages currentSlug="dolch-3rd-grade" variant="inline" slugs={["fry-1-100", "2nd-grade"]} maxLinks={2} /> for continued high-frequency word growth.
+  </p>
+
+  <div id="flashcard-tool" class="no-print">
+    <Flashcard
+      client:load
+      words={list.words}
+      listName={list.name}
+    />
+  </div>
+
+  <div class="mt-4 mb-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-extrabold text-gray-900 mb-5 border-l-4 border-blue-600 pl-3">All {list.wordCount} 3rd Grade Words</h2>
+    <WordTable words={list.words} listName={list.name} />
+  </section>
+
+  <div class="mt-6 no-print">
+    <PrintButton />
+  </div>
+
+  <section class="mt-10 no-print">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Teaching Tips for 3rd Grade Words</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      By 3rd grade, your child is reading longer texts and encountering these words constantly. Use the flashcard tool for a quick warm-up before reading time — just five minutes to refresh words they're still working on, then let real reading take over.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      At this stage, mastery means instant recognition — under one second, no hesitation. If your child pauses to think about a word, it's not mastered yet. Keep that word in the rotation until it comes out automatically.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      Finishing the Dolch list is a real accomplishment. Once your child has all 220 words, celebrate it — and then consider moving on to the Fry sight words for an even broader vocabulary foundation.
+    </p>
+  </section>
+
+  <div class="no-print">
+    <FAQ faqs={faqs} />
+  </div>
+
+  <div class="no-print">
+    <RelatedPages currentSlug="dolch-3rd-grade" title="Continue learning" maxLinks={3} />
+  </div>
+</BaseLayout>
