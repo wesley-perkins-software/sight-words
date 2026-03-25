@@ -58,11 +58,12 @@ function shuffleArray(arr) {
 }
 
 export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
-  const [deck, setDeck] = useState(() => (shuffleOnLoad ? shuffleArray(words) : words));
+  const [deck, setDeck] = useState(words);
   const [index, setIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFakeFullscreen, setIsFakeFullscreen] = useState(false);
   const [isVoiceReady, setIsVoiceReady] = useState(false);
+  const [isDeckReady, setIsDeckReady] = useState(!shuffleOnLoad);
   const flashcardRef = useRef(null);
   const touchStartRef = useRef({ x: 0, y: 0 });
   const touchDeltaRef = useRef({ x: 0, y: 0 });
@@ -82,6 +83,13 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
     setDeck(shuffleArray(words));
     setIndex(0);
   }, [words]);
+
+  useEffect(() => {
+    if (!shuffleOnLoad) return;
+    setDeck(shuffleArray(words));
+    setIndex(0);
+    setIsDeckReady(true);
+  }, [shuffleOnLoad, words]);
 
   const handleSpeak = useCallback(async () => {
     await speak(currentWord);
@@ -239,7 +247,12 @@ export default function Flashcard({ words, listName, shuffleOnLoad = false }) {
       >
         <span
           className={`font-extrabold text-center leading-tight break-words px-6 ${isFullscreen ? 'text-9xl' : 'text-7xl'}`}
-          style={{ paddingTop: '40px', paddingBottom: '40px', color: '#1e293b' }}
+          style={{
+            paddingTop: '40px',
+            paddingBottom: '40px',
+            color: '#1e293b',
+            visibility: isDeckReady ? 'visible' : 'hidden',
+          }}
         >
           {currentWord}
         </span>
