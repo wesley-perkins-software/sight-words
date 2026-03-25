@@ -45,17 +45,6 @@ const faqs = [
     If you want a grade-based companion, pair this list with <RelatedPages currentSlug="fry-sight-words" variant="inline" slugs={["fry-1-100", "kindergarten"]} maxLinks={2} /> so practice stays balanced.
   </p>
 
-  <div class="mb-8 no-print">
-    <a
-      href="#flashcard-tool"
-      class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-white transition-colors"
-      style="background-color: #2563EB; min-height: 52px;"
-      onclick="document.getElementById('flashcard-tool').scrollIntoView({behavior:'smooth'}); return false;"
-    >
-      Practice with Flashcards
-    </a>
-  </div>
-
   <div id="flashcard-tool" class="no-print">
     <Flashcard
       client:load
