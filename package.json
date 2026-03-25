@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "postinstall": "node scripts/patch-sitemap-compat.mjs"
+    "postinstall": "node scripts/patch-sitemap-compat.mjs",
+    "generate:favicons": "node scripts/generate-favicons.mjs",
+    "prebuild": "npm run generate:favicons"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.0",
