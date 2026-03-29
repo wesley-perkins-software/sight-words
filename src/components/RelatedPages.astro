@@ -7,10 +7,13 @@ interface Props {
   variant?: "chips" | "cards" | "inline";
   maxLinks?: number;
   title?: string;
+  helperText?: string;
   slugs?: string[];
 }
 
-const { currentSlug, variant = "chips", maxLinks = 4, title = "Related practice", slugs } = Astro.props;
+const { currentSlug, variant = "chips", maxLinks = 4, title = "Related practice", helperText, slugs } = Astro.props;
+const resolvedHelperText =
+  helperText ?? (title === "Next steps" ? "Choose the next list to move ahead or review an easier one to build confidence." : undefined);
 
 const majorPageLabelMap = new Map(majorPageLinks.map((link) => [link.slug, link.label]));
 const listLabelMap = new Map(
@@ -153,6 +156,7 @@ const helpfulLinks = recommendationSlugs
 {helpfulLinks.length > 0 && variant === "chips" && (
   <section class="mt-10 pt-8 border-t border-gray-200">
     <h2 class="text-xl font-bold text-gray-800 mb-4">{title}</h2>
+    {resolvedHelperText && <p class="text-gray-600 mb-4">{resolvedHelperText}</p>}
     <ul class="flex flex-wrap gap-3">
       {helpfulLinks.map((link) => (
         <li>
